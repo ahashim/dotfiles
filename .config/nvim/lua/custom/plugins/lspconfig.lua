@@ -1,8 +1,8 @@
+-- custom language server settings
 local M = {}
 
 M.setup_lsp = function(attach, capabilities)
     local lspconfig = require "lspconfig"
-
     local eslint = {
         lintCommand = "eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}",
         lintIgnoreExitCode = true,
@@ -18,7 +18,7 @@ M.setup_lsp = function(attach, capabilities)
         formatStdin = true,
     }
 
-    -- eslint
+    -- efm langserver (eslint & prettier)
     lspconfig.efm.setup {
         on_attach = function(client)
             if client.resolved_capabilities.document_formatting then
