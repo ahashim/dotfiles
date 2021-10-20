@@ -2,6 +2,7 @@ local M = {}
 
 M.setup_lsp = function(attach, capabilities)
     local lspconfig = require "lspconfig"
+
     local eslint = {
         lintCommand = "eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}",
         lintIgnoreExitCode = true,
@@ -12,10 +13,21 @@ M.setup_lsp = function(attach, capabilities)
         },
         lintSource = "eslint"
     }
+    local prettier = {
+        formatCommand = 'prettierd "${INPUT}"',
+        formatStdin = true,
+    }
 
     -- eslint
     lspconfig.efm.setup {
-        on_attach = on_attach,
+        on_attach = function(client)
+            if client.resolved_capabilities.document_formatting then
+                vim.cmd [[augroup Format]]
+                vim.cmd [[autocmd! * <buffer>]]
+                vim.cmd [[autocmd BufWritePost <buffer> lua require'custom.plugins.formatting'.format()]]
+                vim.cmd [[augroup END]]
+            end
+        end,
         capabilities = capabilities,
         init_options = {documentFormatting = true},
         root_dir = vim.loop.cwd,
@@ -27,10 +39,10 @@ M.setup_lsp = function(attach, capabilities)
         },
         settings = {
             languages = {
-                javascript = {eslint},
-                javascriptreact = {eslint},
-                typescript = {eslint},
-                typescriptreact = {eslint},
+                javascript = {eslint, prettier},
+                javascriptreact = {eslint, prettier},
+                typescript = {eslint, prettier},
+                typescriptreact = {eslint, prettier},
             },
             rootMarkers = {".git/", "package.json", ".eslintrc*"},
         }
@@ -38,7 +50,9 @@ M.setup_lsp = function(attach, capabilities)
 
     -- typescript
     lspconfig.tsserver.setup {
-        on_attach = on_attach,
+        on_attach = function(client)
+            client.resolved_capabilities.document_formatting = false
+        end,
         capabilities = capabilities,
     }
 
