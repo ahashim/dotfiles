@@ -34,7 +34,10 @@ function u() {
 
 ## -------- ALIASES
 
+# Unix
 alias du='du -hs * | sort -h'
+alias ll='ls -al'
+alias tldr='tldr --theme base16'
 
 # Neovim
 alias nvim='~/.local/bin/nvim.appimage'
