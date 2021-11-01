@@ -39,9 +39,9 @@ function u() {
 # Example: "expbackoff my_command --with --some --args --maybe"
 # Source: https://gist.github.com/nathforge/62456d9b18e276954f58eb61bf234c17
 expbackoff() {
-    local MAX_RETRIES=${EXPBACKOFF_MAX_RETRIES:-10} # Max number of retries
+    local MAX_RETRIES=${EXPBACKOFF_MAX_RETRIES:-16} # Max number of retries
     local BASE=${EXPBACKOFF_BASE:-1} # Base value for backoff calculation
-    local MAX=${EXPBACKOFF_MAX:-3000} # Max value for backoff calculation
+    local MAX=${EXPBACKOFF_MAX:-65536} # Max value for backoff calculation (defaults to ~45.5 hours)
     local FAILURES=0
     while ! "$@"; do
         FAILURES=$(( $FAILURES + 1 ))
