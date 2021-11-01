@@ -5,13 +5,14 @@ export PATH=$HOME/bin:/usr/local/bin:/usr/local/go/bin:$HOME/go/bin:$PATH
 export ZSH="$HOME/.oh-my-zsh"
 export LANG=en_US.UTF-8
 export EDITOR='vim'
+export GPG_TTY='9419D26F44E34957'
 
 
 # Themes
 ZSH_THEME="smt"
 
 # Plugins
-plugins=(aws autojump command-not-found docker git golang yarn zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(aws autojump command-not-found docker git fasd golang yarn zsh-syntax-highlighting zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
 # Extended history (http://zsh.sourceforge.net/Doc/Release/Options.html)
@@ -23,12 +24,42 @@ export SAVEHIST=10000 #save history after logout
 export HISTFILE=~/.zhistory #history file
 export HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S " # add timestamp
 
+# Vi mode
+bindkey -v
+
 
 ## -------- FUNCTIONS
 
 # Quickly traverse up a directory path
 function u() {
   cd $(printf "%0.0s../" $(seq 1 $1));
+}
+
+# Exponential backoff: retries a command upon failure, scaling up the delay between retries.
+# Example: "expbackoff my_command --with --some --args --maybe"
+# Source: https://gist.github.com/nathforge/62456d9b18e276954f58eb61bf234c17
+expbackoff() {
+    local MAX_RETRIES=${EXPBACKOFF_MAX_RETRIES:-10} # Max number of retries
+    local BASE=${EXPBACKOFF_BASE:-1} # Base value for backoff calculation
+    local MAX=${EXPBACKOFF_MAX:-3000} # Max value for backoff calculation
+    local FAILURES=0
+    while ! "$@"; do
+        FAILURES=$(( $FAILURES + 1 ))
+        if (( $FAILURES > $MAX_RETRIES )); then
+            echo "$@" >&2
+            echo " * Failed, max retries exceeded" >&2
+            return 1
+        else
+            local SECONDS=$(( $BASE * 2 ** ($FAILURES - 1) ))
+            if (( $SECONDS > $MAX )); then
+                SECONDS=$MAX
+            fi
+            echo "$@" >&2
+            echo " * $FAILURES failure(s), retrying in $SECONDS second(s)" >&2
+            sleep $SECONDS
+            echo
+        fi
+    done
 }
 
 
