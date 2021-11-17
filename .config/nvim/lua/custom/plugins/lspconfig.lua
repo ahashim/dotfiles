@@ -82,7 +82,7 @@ M.setup_lsp = function(attach, capabilities)
                 typescript = {eslint, prettier},
                 typescriptreact = {eslint, prettier},
             },
-            rootMarkers = {".git/", "package.json", ".eslintrc*"},
+            rootMarkers = {".git/", "package.json", ".eslintrc*", ".prettierrc*"},
         }
     }
 
