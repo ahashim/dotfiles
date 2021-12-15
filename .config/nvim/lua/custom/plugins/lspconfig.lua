@@ -2,24 +2,9 @@
 local M = {}
 
 M.setup_lsp = function(attach, capabilities)
-    -- variables
-    local lspconfig = require "lspconfig"
-    local eslint = {
-        lintCommand = "eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}",
-        lintIgnoreExitCode = true,
-        lintStdin = true,
-        lintFormats = {
-            "%f(%l,%c): %tarning %m",
-            "%f(%l,%c): %rror %m"
-        },
-        lintSource = "eslint"
-    }
-    local prettier = {
-        formatCommand = 'prettierd "${INPUT}"',
-        formatStdin = true,
-    }
+    local lsp_installer = require("nvim-lsp-installer");
 
-    -- functions
+    -- default on_attach function for all servers
     local function on_attach(_, bufnr)
        local function buf_set_keymap(...)
           vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -55,57 +40,106 @@ M.setup_lsp = function(attach, capabilities)
        buf_set_keymap("v", "<space>ca", "<cmd>lua vim.lsp.buf.range_code_action()<CR>", opts)
     end
 
-    -- efm langserver (eslint & prettier)
-    lspconfig.efm.setup {
-        on_attach = function(client)
-            if client.resolved_capabilities.document_formatting then
-                vim.cmd [[augroup Format]]
-                vim.cmd [[autocmd! * <buffer>]]
-                vim.cmd [[autocmd BufWritePost <buffer> lua require'custom.plugins.formatting'.format()]]
-                vim.cmd [[augroup END]]
-            end
-            on_attach()
-        end,
+    -- default options initialized for all servers
+    local default_opts = {
         capabilities = capabilities,
-        init_options = {documentFormatting = true},
+        on_attach = on_attach,
         root_dir = vim.loop.cwd,
-        filetypes = {
-            "javascript",
-            "javascriptreact",
-            "typescript",
-            "typescriptreact",
-        },
-        settings = {
-            languages = {
-                javascript = {eslint, prettier},
-                javascriptreact = {eslint, prettier},
-                typescript = {eslint, prettier},
-                typescriptreact = {eslint, prettier},
+    }
+
+    -- list of servers using out of the box defaults
+    local default_servers = {
+        "bashls",
+        "cssls",
+        "dockerls",
+        "eslint",
+        "html",
+        "jsonls",
+        "gopls",
+        "graphql",
+        "pyright",
+        "rust_analyzer",
+        "sumneko_lua",
+        "sqls",
+        "stylelint_lsp",
+        "tailwindcss",
+    }
+
+    -- initialize default servers
+    for _, name in pairs(default_servers) do
+      local server_is_found, server = lsp_installer.get_server(name)
+      if server_is_found then
+        if not server:is_installed() then
+          print("Installing " .. name)
+          server:install()
+        end
+        server:on_ready(function(server)
+            server:setup(default_opts)
+        end)
+      end
+    end
+
+    -- custom LSP server configuration
+    lsp_installer.on_server_ready(function(server)
+        -- variables
+        local eslint = {
+            lintCommand = "eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}",
+            lintIgnoreExitCode = true,
+            lintStdin = true,
+            lintFormats = {
+                "%f(%l,%c): %tarning %m",
+                "%f(%l,%c): %rror %m"
             },
-            rootMarkers = {".git/", "package.json", ".eslintrc*", ".prettierrc*"},
+            lintSource = "eslint"
         }
-    }
-
-    -- typescript
-    lspconfig.tsserver.setup {
-        on_attach = function(client)
-            client.resolved_capabilities.document_formatting = false
-            on_attach()
-        end,
-        capabilities = capabilities,
-    }
-
-    -- solidity
-    lspconfig.solang.setup {
-        on_attach = on_attach(),
-        capabilities = capabilities,
-        cmd = {"solang", "--language-server"},
-        filetypes = {"solidity"},
-        root_dir = vim.loop.cwd,
-        settings = {
-            rootMarkers = {".git"}
+        local prettier = {
+            formatCommand = 'prettierd "${INPUT}"',
+            formatStdin = true,
         }
-    }
+
+        local custom_servers = {
+            ["efm"] = function()
+                default_opts.filetypes = {
+                    "javascript",
+                    "javascriptreact",
+                    "typescript",
+                    "typescriptreact",
+                }
+                default_opts.init_optsions = {documentFormatting = true}
+                default_opts.on_attach = function(client)
+                    if client.resolved_capabilities.document_formatting then
+                        vim.cmd [[augroup Format]]
+                        vim.cmd [[autocmd! * <buffer>]]
+                        vim.cmd [[autocmd BufWritePost <buffer> lua require'custom.plugins.formatting'.format()]]
+                        vim.cmd [[augroup END]]
+                    end
+                    on_attach()
+                end
+                default_opts.settings = {
+                    languages = {
+                        javascript = {eslint, prettier},
+                        javascriptreact = {eslint, prettier},
+                        typescript = {eslint, prettier},
+                        typescriptreact = {eslint, prettier},
+                    },
+                    rootMarkers = {".git/", "package.json", ".eslintrc*", ".prettierrc*"}
+                }
+            end,
+            ["solang"] = function()
+                default_opts.cmd = {"solang", "--language-server"}
+            end,
+            ["tsserver"] = function()
+                default_opts.on_attach = function(client)
+                    client.resolved_capabilities.document_formatting = false
+                    on_attach()
+                end
+            end,
+        }
+
+        -- initialize with custom settings (fallback to defaults)
+        local server_options = custom_servers[server.name] and custom_servers[server.name]() or default_opts
+        server:setup(server_options)
+    end)
 end
 
 return M
