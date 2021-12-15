@@ -5,13 +5,14 @@ export PATH=$HOME/bin:/usr/local/bin:/usr/local/go/bin:$HOME/go/bin:$PATH
 export ZSH="$HOME/.oh-my-zsh"
 export LANG=en_US.UTF-8
 export EDITOR='vim'
+export GPG_TTY='9419D26F44E34957'
 
 
 # Themes
 ZSH_THEME="smt"
 
 # Plugins
-plugins=(aws autojump command-not-found docker git fasd golang yarn zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(aws command-not-found docker git fasd golang yarn zsh-syntax-highlighting zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
 # Extended history (http://zsh.sourceforge.net/Doc/Release/Options.html)
@@ -42,6 +43,11 @@ function u() {
 alias du='du -hs * | sort -h'
 alias ll='ls -al'
 alias tldr='tldr --theme base16'
+
+# Miners
+MINERS='~/Development/miners'
+alias ether="$MINERS/ether.sh"
+alias haven="$MINERS/haven.sh"
 
 # Neovim
 alias nvim='~/.local/bin/nvim.appimage'
