@@ -49,19 +49,19 @@ M.setup_lsp = function(attach, capabilities)
 
     -- list of servers using out of the box defaults
     local default_servers = {
-        "bashls",
+        -- "bashls",
         "cssls",
-        "dockerls",
-        "eslint",
+        -- "dockerls",
+        -- "eslint",
         "html",
         "jsonls",
         "gopls",
-        "graphql",
-        "pyright",
-        "rust_analyzer",
+        -- "graphql",
+        -- "pyright",
+        -- "stylelint_lsp",
+        -- "rust_analyzer",
         "sumneko_lua",
-        "sqls",
-        "stylelint_lsp",
+        -- "sqls",
         "tailwindcss",
     }
 
@@ -99,13 +99,7 @@ M.setup_lsp = function(attach, capabilities)
 
         local custom_servers = {
             ["efm"] = function()
-                default_opts.filetypes = {
-                    "javascript",
-                    "javascriptreact",
-                    "typescript",
-                    "typescriptreact",
-                }
-                default_opts.init_optsions = {documentFormatting = true}
+                default_opts.init_options = {documentFormatting = true}
                 default_opts.on_attach = function(client)
                     if client.resolved_capabilities.document_formatting then
                         vim.cmd [[augroup Format]]
@@ -126,6 +120,9 @@ M.setup_lsp = function(attach, capabilities)
                 }
             end,
             ["solang"] = function()
+                default_opts.filetypes = {
+                    "solidity",
+                }
                 default_opts.cmd = {"solang", "--language-server"}
             end,
             ["tsserver"] = function()
