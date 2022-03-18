@@ -222,12 +222,14 @@
 [credential]
 	helper = cache --timeout=3600
 [diff]
+  colorMoved = default
 	tool = vimdiff
 [difftool]
 	prompt = false
 [delta]
 	features = line-numbers decorations
 	line-numbers = true
+  navigate = true
 [delta "decorations"]
 	minus-style = red bold normal
 	plus-style = green bold normal
@@ -246,6 +248,8 @@
 	user = ahashim
 [init]
 	defaultBranch = main
+[interactive]
+  diffFilter = delta --color-only
 [merge]
 	conflictstyle = diff3
 	tool = vimdiff
