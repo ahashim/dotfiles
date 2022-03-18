@@ -57,7 +57,7 @@
 	g = grep -p
 	#############
 	l = log --oneline
-	lg = log --oneline --graph --decorate
+	lg = log --oneline --decorate --graph --all
 	#############
 	ls = ls-files
 	lsf = !git ls-files | grep -i
@@ -244,6 +244,8 @@
 	line-numbers-right-format = "{np:^4}│ "
 [github]
 	user = ahashim
+[init]
+	defaultBranch = main
 [merge]
 	conflictstyle = diff3
 	tool = vimdiff
