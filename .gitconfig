@@ -132,7 +132,6 @@
 	rv = remote -v
 	rn = remote rename
 	rp = remote prune
-	rs = remote show
 	rao = remote add origin
 	rau = remote add upstream
 	rro = remote remove origin
@@ -141,6 +140,8 @@
 	rsu = remote show upstream
 	rpo = remote prune origin
 	rpu = remote prune upstream
+	#############
+  rs = restore
 	#############
 	rmf = rm -f
 	rmrf = rm -r -f
