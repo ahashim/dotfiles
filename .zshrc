@@ -44,11 +44,6 @@ alias du='du -hs * | sort -h'
 alias ll='ls -al'
 alias tldr='tldr --theme base16'
 
-# Miners
-MINERS='~/Development/miners'
-alias ether="$MINERS/ether.sh"
-alias haven="$MINERS/haven.sh"
-
 # Neovim
 alias nvim='~/.local/bin/nvim.appimage'
 alias neovim=nvim
