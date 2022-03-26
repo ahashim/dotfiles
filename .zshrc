@@ -50,6 +50,9 @@ alias neovim=nvim
 alias vim=nvim
 alias vi=vim
 
+# pnpm
+alias npm='pnpm'
+
 # TMux
 alias a='tmux a #';
 
