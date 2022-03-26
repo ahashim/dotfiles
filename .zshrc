@@ -52,6 +52,7 @@ alias vi=vim
 
 # pnpm
 alias npm='pnpm'
+alias npx='pnpx'
 
 # TMux
 alias a='tmux a #';
