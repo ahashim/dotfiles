@@ -45,7 +45,6 @@ alias ll='ls -al'
 alias tldr='tldr --theme base16'
 
 # Neovim
-alias nvim='~/.local/bin/nvim.appimage'
 alias neovim=nvim
 alias vim=nvim
 alias vi=vim
