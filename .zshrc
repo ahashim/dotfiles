@@ -58,7 +58,7 @@ function u() {
 
 # Unix
 alias du='du -hs * | sort -h'
-alias ll='ls -al'
+alias ll='ls -alhF'
 alias tldr='tldr --theme base16'
 
 # Neovim
