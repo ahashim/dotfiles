@@ -79,6 +79,9 @@ alias ssh='kitty +kitten ssh $@'
 alias du='du -hs * | sort -h'
 alias ll='exa -aFlxTL=1 --group-directories-first --icons'
 alias tldr='tldr --theme base16'
+alias up='sudo apt update -yqq \
+          && sudo apt dist-upgrade -yqq \
+          && sudo apt autoremove -yqq'
 
 
 ## -------- INIT
