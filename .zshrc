@@ -2,6 +2,7 @@
 
 # Environment Variables
 export ARCHFLAGS="-arch x86_64"
+export BUN_INSTALL="$HOME/.bun"
 export CARGO="$HOME/.cargo"
 export EDITOR='vim'
 export GOPATH="$HOME/go"
@@ -10,7 +11,7 @@ export GPG_TTY='2E746699667C1969'
 export LANG=en_US.UTF-8
 export LOCAL="$HOME/.local"
 export PNPM_HOME="$LOCAL/share/pnpm"
-export PATH="$PNPM_HOME:$LOCAL/bin:$PATH:$GOROOT/bin:$GOPATH/bin:$CARGO/bin"
+export PATH="$PNPM_HOME:$LOCAL/bin:$BUN_INSTALL/bin:$PATH:$GOROOT/bin:$GOPATH/bin:$CARGO/bin"
 export ZSH="$HOME/.oh-my-zsh"
 
 # Plugins
@@ -24,6 +25,7 @@ zstyle ':omz:update' mode auto
 zstyle ':omz:update' frequency 1
 
 # Initialize
+[ -s "/home/ahmed/.bun/_bun" ] && source "/home/ahmed/.bun/_bun" # bun
 source $ZSH/oh-my-zsh.sh
 
 
