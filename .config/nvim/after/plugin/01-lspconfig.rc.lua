@@ -63,8 +63,8 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Don't auto format when clashing LSP's with null-ls
 local no_auto_format = function(client)
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    client.server_capabilities.document_formatting = false
+    client.server_capabilities.document_range_formatting = false
 end
 
 ----------------------
