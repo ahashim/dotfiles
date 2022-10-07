@@ -27,15 +27,17 @@ local my_sources = {
 }
 
 null_ls.setup {
-    on_attach = function(client)
-        -- auto format on save
-        if client.server_capabilities.document_formatting then
-            vim.cmd [[
-        augroup LspFormatting
-          autocmd! * <buffer>
-          autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
-        augroup END
-      ]]
+    on_attach = function(client, bufnr)
+        if client.supports_method "textDocument/formatting" then
+            local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+            vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                    vim.lsp.buf.format { bufnr = bufnr }
+                end,
+            })
         end
     end,
     sources = my_sources,
