@@ -22,6 +22,10 @@ local my_sources = {
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.eslint_d,
     null_ls.builtins.formatting.fixjson,
+    null_ls.builtins.formatting.gofumpt,
+    null_ls.builtins.formatting.goimports,
+    null_ls.builtins.formatting.goimports_reviser,
+    null_ls.builtins.formatting.golines,
     null_ls.builtins.formatting.prettierd,
     null_ls.builtins.formatting.stylua,
 }
