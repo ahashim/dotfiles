@@ -53,6 +53,15 @@ function k() {
   fi
 }
 
+# Search & replace a string in all files recursively from within the current
+# directory.
+# `s oldString newString`
+function s() {
+  find . \( -type d -name .git -prune \) -o -type f -print0 \
+    | xargs -0 sed -i "s/$1/$2/g"
+  echo "Replaced all occurrences of '$1' with '$2'"
+}
+
 # Traverse `n` directories upwards
 # `u 2` == `cd ../..`
 function u() {
