@@ -24,11 +24,6 @@ ZSH_THEME="smt"
 zstyle ':omz:update' mode auto
 zstyle ':omz:update' frequency 1
 
-# Initialize
-[ -s "/home/ahmed/.bun/_bun" ] && source "/home/ahmed/.bun/_bun" # bun
-source $ZSH/oh-my-zsh.sh
-
-
 ## -------- FUNCTIONS
 
 # Launch a kitty workspace session
@@ -96,4 +91,6 @@ alias up='sudo apt update -yqq \
 
 
 ## -------- INIT
+source "$BUN_INSTALL/_bun"
+source "$ZSH/oh-my-zsh.sh"
 dinofortune
