@@ -91,6 +91,7 @@ alias up='sudo apt update -yqq \
 
 
 ## -------- INIT
+
 source "$BUN_INSTALL/_bun"
 source "$ZSH/oh-my-zsh.sh"
 dinofortune
