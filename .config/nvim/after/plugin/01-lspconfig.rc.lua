@@ -58,8 +58,7 @@ protocol.CompletionItemKind = {
 }
 
 -- Set up completion using nvim_cmp with LSP source
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- Don't auto format when clashing LSP's with null-ls
 local no_auto_format = function(client)
@@ -80,16 +79,19 @@ nvim_lsp.cssls.setup {
 -- docker
 nvim_lsp.dockerls.setup {
     on_attach = common_on_attach,
+    capabilities = capabilities,
 }
 
 -- golang
 nvim_lsp.gopls.setup {
     on_attach = common_on_attach,
+    capabilities = capabilities,
 }
 
 -- lua
 nvim_lsp.sumneko_lua.setup {
     on_attach = no_auto_format,
+    capabilities = capabilities,
     settings = {
         Lua = {
             diagnostics = {
@@ -112,41 +114,49 @@ nvim_lsp.sumneko_lua.setup {
 -- markdown
 nvim_lsp.marksman.setup {
     on_attach = common_on_attach,
+    capabilities = capabilities,
 }
 
 -- python
 nvim_lsp.pyright.setup {
     on_attach = common_on_attach,
+    capabilities = capabilities,
 }
 
 -- solidity
 nvim_lsp.solidity_ls.setup {
     on_attach = common_on_attach,
+    capabilities = capabilities,
 }
 
 -- SQL
 nvim_lsp.sqls.setup {
     on_attach = common_on_attach,
+    capabilities = capabilities,
 }
 
 -- tailwind css
 nvim_lsp.tailwindcss.setup {
     on_attach = common_on_attach,
+    capabilities = capabilities,
 }
 
 -- toml
 nvim_lsp.taplo.setup {
     on_attach = common_on_attach,
+    capabilities = capabilities,
 }
 
 -- typescript
 nvim_lsp.tsserver.setup {
     on_attach = no_auto_format,
+    capabilities = capabilities,
 }
 
 -- yaml
 nvim_lsp.yamlls.setup {
     on_attach = common_on_attach,
+    capabilities = capabilities,
 }
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
