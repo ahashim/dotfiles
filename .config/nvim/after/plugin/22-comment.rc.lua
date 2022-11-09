@@ -9,5 +9,5 @@ comment.setup()
 -- mappings
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
-map("n", "<leader>/", ":lua require('Comment.api').toggle.linewise.current()<CR>", opts)
-map("v", "<leader>/", ":lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", opts)
+map("n", "<leader>/", "<Plug>(comment_toggle_linewise_current)", opts)
+map("v", "<leader>/", "<Plug>(comment_toggle_linewise_visual)", opts)
