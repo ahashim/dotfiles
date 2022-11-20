@@ -13,6 +13,7 @@ export LOCAL="$HOME/.local"
 export PNPM_HOME="$LOCAL/share/pnpm"
 export PATH="$PNPM_HOME:$LOCAL/bin:$BUN_INSTALL/bin:$PATH:$GOROOT/bin:$GOPATH/bin:$CARGO/bin"
 export ZSH="$HOME/.oh-my-zsh"
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
 # Plugins
 plugins=(command-not-found docker git zsh-autosuggestions zsh-nvm zsh-syntax-highlighting zsh-z)
