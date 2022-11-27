@@ -48,4 +48,3 @@ set.tabstop = 2
 ----- Text -----
 set.ignorecase = true
 set.smartcase = true
-set.wrap = false
