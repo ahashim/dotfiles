@@ -68,6 +68,13 @@ function u() {
   cd $(printf "%0.0s../" $(seq 1 $1));
 }
 
+# system update
+function up() {
+  sudo apt update -yqq
+  sudo apt dist-upgrade -yqq
+  sudo apt autoremove -yqq
+}
+
 
 ## -------- ALIASES
 
@@ -90,9 +97,6 @@ alias ssh='kitty +kitten ssh $@'
 alias du='du -hs * | sort -h'
 alias ll='exa -aFlxTL=1 --group-directories-first --icons'
 alias tldr='tldr --theme base16'
-alias up='sudo apt update -yqq \
-          && sudo apt dist-upgrade -yqq \
-          && sudo apt autoremove -yqq'
 
 
 ## -------- INIT
