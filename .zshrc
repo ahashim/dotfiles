@@ -86,10 +86,6 @@ alias neovim='nvim'
 alias vim='nvim'
 alias vi='nvim'
 
-# pnpm
-alias npm='pnpm'
-alias npx='pnpm dlx'
-
 # ssh
 alias ssh='kitty +kitten ssh $@'
 
