@@ -68,13 +68,6 @@ function u() {
   cd $(printf "%0.0s../" $(seq 1 $1));
 }
 
-# system update
-function up() {
-  sudo apt update -yqq
-  sudo apt dist-upgrade -yqq
-  sudo apt autoremove -yqq
-}
-
 
 ## -------- ALIASES
 
