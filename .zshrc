@@ -97,9 +97,9 @@ alias tldr='tldr --theme base16'
 
 ## -------- OS OVERRIDES
 
-if command -v apt > /dev/null; then
+if [[ $OSTYPE == 'linux-gnu' ]]; then
   source $ZSH_OS/debian.zsh
-elif [[ `uname` == "Darwin" ]]; then
+elif [[ $OSTYPE == "darwin22.0" ]]; then
   source $ZSH_OS/mac.zsh
 else
   echo 'Unknown OS!'
@@ -108,3 +108,4 @@ fi
 
 ## -------- INIT
 dinofortune
+# Set PATH, MANPATH, etc., for Homebrew.
