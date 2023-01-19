@@ -108,4 +108,3 @@ fi
 
 ## -------- INIT
 dinofortune
-# Set PATH, MANPATH, etc., for Homebrew.
