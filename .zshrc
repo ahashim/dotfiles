@@ -1,7 +1,6 @@
 ## -------- CORE
 
 # Environment Variables
-export ARCHFLAGS="-arch x86_64"
 export BUN_INSTALL="$HOME/.bun"
 export CARGO="$HOME/.cargo"
 export EDITOR='vim'
@@ -14,6 +13,7 @@ export PNPM_HOME="$LOCAL/share/pnpm"
 export PATH="$PNPM_HOME:$LOCAL/bin:$BUN_INSTALL/bin:$PATH:$GOROOT/bin:$GOPATH/bin:$CARGO/bin"
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
+export ZSH_OS="$HOME/.zsh/os"
 
 # Plugins
 plugins=(command-not-found docker git zsh-autosuggestions zsh-nvm zsh-syntax-highlighting z)
@@ -29,14 +29,14 @@ zstyle ':omz:update' frequency 1
 source "$BUN_INSTALL/_bun"
 source "$ZSH/oh-my-zsh.sh"
 
+
 ## -------- FUNCTIONS
 
 # Launch a kitty workspace session
 function k() {
   session=$@
 
-  if [[ -z $session || ! -d $HOME/Workspace/$session ]]
-  then
+  if [[ -z $session || ! -d $HOME/Workspace/$session ]]; then
     # session is null or workspace does not exist
     echo "Invalid selection. Please choose an existing session:\n"
     ls $HOME/Workspace
@@ -93,6 +93,17 @@ alias ssh='kitty +kitten ssh $@'
 alias du='du -hs * | sort -h'
 alias ll='exa -aFlxTL=1 --group-directories-first --icons'
 alias tldr='tldr --theme base16'
+
+
+## -------- OS OVERRIDES
+
+if command -v apt > /dev/null; then
+  source $ZSH_OS/debian.zsh
+elif [[ `uname` == "Darwin" ]]; then
+  source $ZSH_OS/mac.zsh
+else
+  echo 'Unknown OS!'
+fi
 
 
 ## -------- INIT
