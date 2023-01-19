@@ -98,7 +98,7 @@ alias tldr='tldr --theme base16'
 ## -------- OS OVERRIDES
 
 if [[ $OSTYPE == 'linux-gnu' ]]; then
-  source $ZSH_OS/debian.zsh
+  source $ZSH_OS/linux.zsh
 elif [[ $OSTYPE == "darwin22.0" ]]; then
   source $ZSH_OS/mac.zsh
 else
