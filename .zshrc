@@ -16,7 +16,7 @@ export ZSH="$HOME/.oh-my-zsh"
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
 # Plugins
-plugins=(command-not-found docker git zsh-autosuggestions zsh-nvm zsh-syntax-highlighting zsh-z)
+plugins=(command-not-found docker git zsh-autosuggestions zsh-nvm zsh-syntax-highlighting z)
 
 # Theme
 ZSH_THEME="smt"
