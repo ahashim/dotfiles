@@ -9,6 +9,7 @@ export GOROOT="/usr/local/go"
 export GPG_TTY='2E746699667C1969'
 export LANG=en_US.UTF-8
 export LOCAL="$HOME/.local"
+export NVM_DIR="$HOME/.nvm"
 export PNPM_HOME="$LOCAL/share/pnpm"
 export PATH="$PNPM_HOME:$LOCAL/bin:$BUN_INSTALL/bin:$PATH:$GOROOT/bin:$GOPATH/bin:$CARGO/bin"
 export ZSH="$HOME/.oh-my-zsh"
@@ -24,10 +25,6 @@ ZSH_THEME="smt"
 # Updates
 zstyle ':omz:update' mode auto
 zstyle ':omz:update' frequency 1
-
-# Source
-source "$BUN_INSTALL/_bun"
-source "$ZSH/oh-my-zsh.sh"
 
 
 ## -------- FUNCTIONS
@@ -100,4 +97,16 @@ fi
 
 
 ## -------- INIT
+
+# bun
+source "$BUN_INSTALL/_bun"
+
+#nvm
+source "$NVM_DIR/nvm.sh"
+source "$NVM_DIR/bash_completion"
+
+# zsh
+source "$ZSH/oh-my-zsh.sh"
+
+# daily wisdom
 dinofortune
