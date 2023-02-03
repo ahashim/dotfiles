@@ -29,6 +29,13 @@ local common_on_attach = function(_, bufnr)
     buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 end
 
+-- Don't auto format when clashing LSP's with null-ls
+local no_auto_format = function(client, bufnr)
+    common_on_attach(client, bufnr)
+    client.server_capabilities.document_formatting = false
+    client.server_capabilities.document_range_formatting = false
+end
+
 protocol.CompletionItemKind = {
     icons.Text,
     icons.Method,
@@ -59,12 +66,6 @@ protocol.CompletionItemKind = {
 
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
--- Don't auto format when clashing LSP's with null-ls
-local no_auto_format = function(client)
-    client.server_capabilities.document_formatting = false
-    client.server_capabilities.document_range_formatting = false
-end
 
 ----------------------
 -- Language Servers --

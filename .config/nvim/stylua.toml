@@ -1,2 +1,2 @@
 indent_type = "Spaces"
-call_parentheses = "None"
+no_call_parentheses = true

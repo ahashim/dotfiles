@@ -14,8 +14,8 @@ local my_sources = {
 
     -- diagnostics
     null_ls.builtins.diagnostics.eslint_d,
+    null_ls.builtins.diagnostics.luacheck,
     null_ls.builtins.diagnostics.mypy,
-    null_ls.builtins.diagnostics.selene,
     null_ls.builtins.diagnostics.solhint,
 
     -- formatting

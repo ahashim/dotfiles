@@ -54,7 +54,10 @@ return require("packer").startup(function(use)
         end,
     }
     use "jose-elias-alvarez/null-ls.nvim"
-    use "kyazdani42/nvim-tree.lua"
+    use {
+        "kyazdani42/nvim-tree.lua",
+        tag = "nightly",
+    }
     use "kyazdani42/nvim-web-devicons"
     use "L3MON4D3/LuaSnip"
     use "lewis6991/gitsigns.nvim"

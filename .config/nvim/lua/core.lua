@@ -2,6 +2,8 @@ local set = vim.opt
 
 ----- Globals -----
 vim.g.mapleader = " "
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 ----- General -----
 set.backupskip = { "/tmp/*", "/private/tmp/*" }
