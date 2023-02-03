@@ -54,7 +54,7 @@ saga.setup {
         enable = true,
         enable_in_insert = true,
         sign = true,
-        sign_priority = 20,
+        sign_priority = 0,
         virtual_text = true,
     },
     outline = {
