@@ -50,14 +50,14 @@ dashboard.setup {
             "          Linus Torvalds          ",
         },
         mru = {
-            label = " Recently Opened",
+            label = " Recent Files",
             limit = 3,
         },
         packages = {
             enable = true,
         },
         project = {
-            label = " Current Workspace",
+            label = " Recent Projects",
             limit = 3,
         },
         shortcut = {
