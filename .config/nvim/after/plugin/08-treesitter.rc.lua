@@ -24,6 +24,7 @@ treesitter.setup {
         "lua",
         "make",
         "markdown",
+        "markdown_inline",
         "php",
         "python",
         "ruby",
