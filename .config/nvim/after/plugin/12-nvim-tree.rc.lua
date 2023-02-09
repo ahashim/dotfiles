@@ -4,7 +4,11 @@ if not status then
     return
 end
 
-tree.setup {}
+tree.setup { -- BEGIN_DEFAULT_OPTS
+    update_focused_file = {
+        enable = true,
+    },
+}
 
 -- mappings
 local map = vim.keymap.set
