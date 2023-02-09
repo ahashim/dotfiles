@@ -142,54 +142,54 @@ local opts = { noremap = true, silent = true }
 keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", opts)
 
 -- Code action
-keymap({ "n", "v" }, "gx", "<cmd>Lspsaga code_action<CR>")
+keymap({ "n", "v" }, "gx", "<cmd>Lspsaga code_action<CR>", opts)
 
 -- Rename
-keymap("n", "gr", "<cmd>Lspsaga rename<CR>")
+keymap("n", "gr", "<cmd>Lspsaga rename<CR>", opts)
 
 -- Peek Definition
 -- you can edit the definition file in this flaotwindow
 -- also support open/vsplit/etc operation check definition_action_keys
 -- support tagstack C-t jump back
-keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>")
+keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts)
 
 -- Go to Definition
-keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
+keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts)
 
 -- Show line diagnostics you can pass argument ++unfocus to make
 -- show_line_diagnostics float window unfocus
-keymap("n", "go", "<cmd>Lspsaga show_line_diagnostics<CR>")
+keymap("n", "go", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
 
 -- Show cursor diagnostic
 -- also like show_line_diagnostics  support pass ++unfocus
-keymap("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
+keymap("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
 
 -- Show buffer diagnostic
-keymap("n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
+keymap("n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>", opts)
 
 -- Diagnostic jump can use `<c-o>` to jump back
-keymap("n", "<C-k>", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-keymap("n", "<C-j>", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+keymap("n", "<C-k>", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
+keymap("n", "<C-j>", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
 
--- Diagnostic jump with filter like Only jump to error
+-- Diagnostic jump with filters such as only jumping to an error
 keymap("n", "<C-K>", function()
-    require("lspsaga.diagnostic").goto_prev { severity = vim.diagnostic.severity.ERROR }
+    require("lspsaga.diagnostic"):goto_prev { severity = vim.diagnostic.severity.ERROR }
 end)
 keymap("n", "<C-J>", function()
-    require("lspsaga.diagnostic").goto_next { severity = vim.diagnostic.severity.ERROR }
+    require("lspsaga.diagnostic"):goto_next { severity = vim.diagnostic.severity.ERROR }
 end)
 
 -- Toggle Outline
-keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
+keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>", opts)
 
 -- Hover Doc
 -- if there has no hover will have a notify no information available
 -- to disable it just Lspsaga hover_doc ++quiet
-keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
 
 -- Callhierarchy
-keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
-keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
+keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>", opts)
+keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>", opts)
 
 -- Float terminal
-keymap({ "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
+keymap({ "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<CR>", opts)
