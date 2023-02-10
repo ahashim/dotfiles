@@ -27,6 +27,19 @@ zstyle ':omz:update' mode auto
 zstyle ':omz:update' frequency 1
 
 
+## -------- SOURCES
+
+# bun
+source "$BUN_INSTALL/_bun"
+
+#nvm
+source "$NVM_DIR/nvm.sh"
+source "$NVM_DIR/bash_completion"
+
+# zsh
+source "$ZSH/oh-my-zsh.sh"
+
+
 ## -------- FUNCTIONS
 
 # Launch a kitty workspace session
@@ -97,16 +110,6 @@ fi
 
 
 ## -------- INIT
-
-# bun
-source "$BUN_INSTALL/_bun"
-
-#nvm
-source "$NVM_DIR/nvm.sh"
-source "$NVM_DIR/bash_completion"
-
-# zsh
-source "$ZSH/oh-my-zsh.sh"
 
 # daily wisdom
 dinofortune
