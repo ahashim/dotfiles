@@ -25,7 +25,7 @@ lspconfig.setup {
         "gopls",
         "marksman",
         "pyright",
-        "sumneko_lua",
+        "lua_ls",
         "sqls",
         "tailwindcss",
         "taplo",

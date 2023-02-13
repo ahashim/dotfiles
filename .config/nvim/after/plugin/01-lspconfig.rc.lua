@@ -90,7 +90,7 @@ nvim_lsp.gopls.setup {
 }
 
 -- lua
-nvim_lsp.sumneko_lua.setup {
+nvim_lsp.lua_ls.setup {
     on_attach = no_auto_format,
     capabilities = capabilities,
     settings = {
