@@ -84,6 +84,9 @@ function u() {
 # fortune
 alias dinofortune='fortune | xargs -0 dinosay -r | lolcat'
 
+# gist
+alias gist='gh gist create -'
+
 # neovim
 alias neovim='nvim'
 alias vim='nvim'
