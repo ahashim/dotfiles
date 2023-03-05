@@ -26,7 +26,7 @@ zmodule https://github.com/agkozak/zsh-z
 #
 
 # Theme
-zmodule Ansimorph/oblong
+zmodule ahashim/zim-butterhaus
 # Exposes to prompts how long the last command took to execute, used by asciiship.
 zmodule duration-info
 # Exposes git repository status information to prompts, used by asciiship.
