@@ -141,9 +141,13 @@ export LANG=en_US.UTF-8
 export LOCAL="$HOME/.local"
 export NVM_DIR="$HOME/.nvm"
 export PNPM_HOME="$LOCAL/share/pnpm"
-export PATH="$PNPM_HOME:$LOCAL/bin:$BUN_INSTALL/bin:$PATH:$GOROOT/bin:$GOPATH/bin:$CARGO/bin"
-export ZSH_COMPDUMP=$ZSH_HOME/cache/.zcompdump-$HOST
 export ZSH_HOME="$HOME/.zsh"
+
+# Path
+export PATH="$PNPM_HOME:$LOCAL/bin:$BUN_INSTALL/bin:$PATH:$GOROOT/bin:$GOPATH/bin:$CARGO/bin"
+
+# Completion
+zstyle ':zim:completion' dumpfile "$ZSH_HOME/completion/zcompdump"
 
 
 ## -------- SOURCES
