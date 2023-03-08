@@ -38,7 +38,6 @@ return {
         local buftype = api.nvim_buf_get_option(0, "ft")
         local hidden = {
             "help",
-            "dashboard",
             "NvimTree",
             "terminal",
         }
