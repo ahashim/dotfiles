@@ -57,21 +57,21 @@ dashboard.setup {
         shortcut = {
             {
                 action = "Telescope oldfiles",
-                desc = "Recents ",
+                desc = "Recents",
                 group = "@property",
                 icon = " ",
                 key = "o",
             },
             {
                 action = "Telescope find_files",
-                desc = "File file ",
+                desc = "File file",
                 group = "Number",
                 icon = " ",
                 key = "f",
             },
             {
                 action = "Telescope live_grep",
-                desc = "Find word ",
+                desc = "Find word",
                 group = "Label",
                 icon = " ",
                 key = "w",
