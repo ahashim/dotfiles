@@ -218,7 +218,6 @@ alias ssh='kitty +kitten ssh $@'
 # unix
 alias du='du -hs * | sort -h'
 alias ll='exa -alGF --color-scale --icons --no-permissions --no-user'
-alias tldr='tldr --theme base16'
 
 
 ## -------- OS OVERRIDES
