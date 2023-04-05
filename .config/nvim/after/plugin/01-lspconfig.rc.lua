@@ -131,7 +131,7 @@ nvim_lsp.solidity_ls.setup {
 }
 
 -- SQL
-nvim_lsp.sqls.setup {
+nvim_lsp.sqlls.setup {
     on_attach = common_on_attach,
     capabilities = capabilities,
 }
