@@ -40,6 +40,7 @@ return require("packer").startup(function(use)
         tag = "v2.*",
     }
     use "folke/trouble.nvim"
+    use "github/copilot.vim"
     use "glepnir/dashboard-nvim"
     use "glepnir/lspsaga.nvim"
     use "hrsh7th/nvim-cmp"
