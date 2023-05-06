@@ -24,4 +24,5 @@ return {
     Event = "",
     Operator = "",
     TypeParameter = "",
+    Copilot = "",
 }

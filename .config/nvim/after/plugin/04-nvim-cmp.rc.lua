@@ -33,7 +33,7 @@ cmp.setup {
         ["<C-e>"] = cmp.mapping.close(),
         ["<CR>"] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
+            select = false,
         },
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
@@ -41,13 +41,7 @@ cmp.setup {
             elseif luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
             else
-                local copilot_keys = vim.fn["copilot#Accept"]()
-
-                if copilot_keys ~= "" then
-                    vim.api.nvim_feedkeys(copilot_keys, "i", true)
-                else
-                    fallback()
-                end
+                fallback()
             end
         end, { "i", "s" }),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
@@ -61,11 +55,11 @@ cmp.setup {
         end, { "i", "s" }),
     },
     sources = {
-        { name = "Trouble" },
-        { name = "nvim_lsp" },
+        { name = "copilot" },
         { name = "luasnip" },
-        { name = "buffer" },
+        { name = "nvim_lsp" },
         { name = "nvim_lua" },
         { name = "path" },
+        { name = "Trouble" },
     },
 }
