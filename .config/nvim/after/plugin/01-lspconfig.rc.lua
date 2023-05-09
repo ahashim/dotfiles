@@ -1,39 +1,37 @@
 -- run commands
-local status, nvim_lsp = pcall(require, "lspconfig")
+local status, lspconfig = pcall(require, "lspconfig")
 if not status then
     return
 end
 
 local icons = require "icons"
 local protocol = require "vim.lsp.protocol"
+local rt = require "rust-tools"
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local common_on_attach = function(_, bufnr)
-    local function buf_set_keymap(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
-    end
-
-    local function buf_set_option(...)
-        vim.api.nvim_buf_set_option(bufnr, ...)
-    end
-
+local common_on_attach = function(client, bufnr)
     --Enable completion triggered by <c-x><c-o>
-    buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-    -- Mappings.
+    -- Mappings
     local opts = { noremap = true, silent = true }
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-    buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-end
-
--- Don't auto format when clashing LSP's with null-ls
-local no_auto_format = function(client, bufnr)
-    common_on_attach(client, bufnr)
-    client.server_capabilities.document_formatting = false
-    client.server_capabilities.document_range_formatting = false
+    -- Format on save
+    if client.supports_method "textDocument/formatting" then
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = vim.api.nvim_create_augroup("Format", { clear = true }),
+            buffer = bufnr,
+            callback = function()
+                vim.lsp.buf.format {
+                    timeout_ms = 3000,
+                    buffer = bufnr,
+                }
+            end,
+        })
+    end
 end
 
 protocol.CompletionItemKind = {
@@ -62,6 +60,7 @@ protocol.CompletionItemKind = {
     icons.Event,
     icons.Operator,
     icons.TypeParameter,
+    icons.Copilot,
 }
 
 -- Set up completion using nvim_cmp with LSP source
@@ -72,26 +71,32 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 ----------------------
 
 -- css
-nvim_lsp.cssls.setup {
+lspconfig.cssls.setup {
     on_attach = common_on_attach,
     capabilities = capabilities,
 }
 
 -- docker
-nvim_lsp.dockerls.setup {
+lspconfig.dockerls.setup {
     on_attach = common_on_attach,
     capabilities = capabilities,
 }
 
 -- golang
-nvim_lsp.gopls.setup {
+lspconfig.gopls.setup {
     on_attach = common_on_attach,
     capabilities = capabilities,
 }
 
 -- lua
-nvim_lsp.lua_ls.setup {
-    on_attach = no_auto_format,
+lspconfig.lua_ls.setup {
+    on_attach = function(client, bufnr)
+        common_on_attach(client, bufnr)
+
+        -- no autoformat
+        client.server_capabilities.document_formatting = false
+        client.server_capabilities.document_range_formatting = false
+    end,
     capabilities = capabilities,
     settings = {
         Lua = {
@@ -113,49 +118,99 @@ nvim_lsp.lua_ls.setup {
 }
 
 -- markdown
-nvim_lsp.marksman.setup {
+lspconfig.marksman.setup {
     on_attach = common_on_attach,
     capabilities = capabilities,
 }
 
 -- python
-nvim_lsp.pyright.setup {
+lspconfig.pyright.setup {
     on_attach = common_on_attach,
     capabilities = capabilities,
 }
 
+-- rust
+rt.setup {
+    cmd = { "rustup", "run", "stable", "rust-analyzer" },
+    server = {
+        capabilities = capabilities,
+        on_attach = function(client, bufnr)
+            common_on_attach(client, bufnr)
+
+            local opts = { buffer = bufnr }
+
+            vim.keymap.set("n", "K", rt.hover_actions.hover_actions(), opts)
+            vim.keymap.set("n", "gD", vim.lsp.buf.implementation, opts)
+            vim.keymap.set("n", "<c-k>", vim.lsp.buf.signature_help, opts)
+            vim.keymap.set("n", "1gD", vim.lsp.buf.type_definition, opts)
+            vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+            vim.keymap.set("n", "g0", vim.lsp.buf.document_symbol, opts)
+            vim.keymap.set("n", "gW", vim.lsp.buf.workspace_symbol, opts)
+            vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+            vim.keymap.set("n", "ga", vim.lsp.buf.code_action, opts)
+        end,
+        settings = {
+            ["rust-analyzer"] = {
+                assist = {
+                    importEnforceGranularity = true,
+                    importPrefix = "crate",
+                },
+                cargo = {
+                    allFeatures = true,
+                },
+                checkOnSave = {
+                    command = "clippy",
+                },
+                inlayHints = { locationLinks = false },
+                diagnostics = {
+                    enable = true,
+                    experimental = {
+                        enable = true,
+                    },
+                },
+            },
+        },
+    },
+}
+
 -- solidity
-nvim_lsp.solidity_ls.setup {
+lspconfig.solidity_ls.setup {
     on_attach = common_on_attach,
     capabilities = capabilities,
 }
 
 -- SQL
-nvim_lsp.sqlls.setup {
+lspconfig.sqlls.setup {
     on_attach = common_on_attach,
     capabilities = capabilities,
 }
 
 -- tailwind css
-nvim_lsp.tailwindcss.setup {
+lspconfig.tailwindcss.setup {
     on_attach = common_on_attach,
     capabilities = capabilities,
 }
 
 -- toml
-nvim_lsp.taplo.setup {
+lspconfig.taplo.setup {
     on_attach = common_on_attach,
     capabilities = capabilities,
 }
 
 -- typescript
-nvim_lsp.tsserver.setup {
-    on_attach = no_auto_format,
+lspconfig.tsserver.setup {
+    on_attach = function(client, bufnr)
+        common_on_attach(client, bufnr)
+
+        -- no autoformat
+        client.server_capabilities.document_formatting = false
+        client.server_capabilities.document_range_formatting = false
+    end,
     capabilities = capabilities,
 }
 
 -- yaml
-nvim_lsp.yamlls.setup {
+lspconfig.yamlls.setup {
     on_attach = common_on_attach,
     capabilities = capabilities,
 }

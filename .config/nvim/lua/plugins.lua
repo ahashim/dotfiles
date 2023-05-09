@@ -52,6 +52,7 @@ return require("packer").startup(function(use)
             vim.fn["mkdp#util#install"]()
         end,
     }
+    use "j-hui/fidget.nvim"
     use "jose-elias-alvarez/null-ls.nvim"
     use {
         "kyazdani42/nvim-tree.lua",
@@ -62,6 +63,7 @@ return require("packer").startup(function(use)
     use "lewis6991/gitsigns.nvim"
     use "lewis6991/impatient.nvim"
     use "lukas-reineke/indent-blankline.nvim"
+    use "mfussenegger/nvim-dap"
     use "navarasu/onedark.nvim"
     use "norcalli/nvim-colorizer.lua"
     use "numToStr/Comment.nvim"
@@ -81,6 +83,7 @@ return require("packer").startup(function(use)
     use "ojroques/nvim-bufdel"
     use "rafamadriz/friendly-snippets"
     use "saadparwaiz1/cmp_luasnip"
+    use "simrat39/rust-tools.nvim"
     use "TovarishFin/vim-solidity"
     use "tpope/vim-fugitive"
     use "williamboman/mason.nvim"

@@ -132,7 +132,6 @@ unset key
 
 # Environment Variables
 export BUN_INSTALL="$HOME/.bun"
-export CARGO="$HOME/.cargo"
 export EDITOR='vim'
 export GOPATH="$HOME/go"
 export GOROOT="/usr/local/go"
