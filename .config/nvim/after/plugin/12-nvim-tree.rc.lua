@@ -4,14 +4,42 @@ if not status then
     return
 end
 
-tree.setup { -- BEGIN_DEFAULT_OPTS
+tree.setup {
     update_focused_file = {
         enable = true,
+    },
+    renderer = {
+        icons = {
+            glyphs = {
+                default = " ",
+                symlink = " ",
+                bookmark = " ",
+                modified = "●",
+                folder = {
+                    arrow_closed = "",
+                    arrow_open = " ",
+                    default = " ",
+                    open = " ",
+                    empty = " ",
+                    empty_open = " ",
+                    symlink = " ",
+                    symlink_open = " ",
+                },
+                git = {
+                    unstaged = "✗",
+                    staged = "✓",
+                    unmerged = " ",
+                    renamed = "➜",
+                    untracked = "★",
+                    deleted = " ",
+                    ignored = "◌",
+                },
+            },
+        },
     },
 }
 
 -- mappings
-local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
-map("n", "<C-n>", ":NvimTreeToggle <CR>", opts)
-map("n", "<leader>e", ":NvimTreeFocus <CR>", opts)
+vim.keymap.set("n", "<C-n>", ":NvimTreeToggle <CR>", opts)
+vim.keymap.set("n", "<leader>e", ":NvimTreeFocus <CR>", opts)
