@@ -40,8 +40,6 @@ return require("packer").startup(function(use)
         tag = "v2.*",
     }
     use "folke/trouble.nvim"
-    use "glepnir/dashboard-nvim"
-    use "glepnir/lspsaga.nvim"
     use "hrsh7th/nvim-cmp"
     use "hrsh7th/cmp-nvim-lua"
     use "hrsh7th/cmp-nvim-lsp"
@@ -54,11 +52,10 @@ return require("packer").startup(function(use)
     }
     use "j-hui/fidget.nvim"
     use "jose-elias-alvarez/null-ls.nvim"
-    use {
-        "kyazdani42/nvim-tree.lua",
-        tag = "nightly",
-    }
-    use "kyazdani42/nvim-web-devicons"
+    use "nvim-tree/nvim-tree.lua"
+    use "nvim-tree/nvim-web-devicons"
+    use "nvimdev/dashboard-nvim"
+    use "nvimdev/lspsaga.nvim"
     use "L3MON4D3/LuaSnip"
     use "lewis6991/gitsigns.nvim"
     use "lewis6991/impatient.nvim"
