@@ -45,7 +45,7 @@ dashboard.setup {
         },
         mru = {
             label = " Recent Files",
-            limit = 7,
+            limit = 6,
         },
         packages = {
             enable = false,
