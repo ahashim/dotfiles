@@ -12,6 +12,7 @@ dashboard.setup {
         header = {
             "",
             "",
+            "",
             "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
             "88888888888888888888888888888888888888888888888888888",
             '8888"""""""""""""""8888888888888888888888888888888888',
@@ -44,14 +45,14 @@ dashboard.setup {
         },
         mru = {
             label = " Recent Files",
-            limit = 3,
+            limit = 7,
         },
         packages = {
             enable = false,
         },
         project = {
+            enable = false,
             label = " Recent Projects",
-            limit = 3,
         },
         shortcut = {
             {
@@ -88,4 +89,5 @@ dashboard.setup {
 }
 
 -- mappings
+vim.keymap.set("n", "<leader>db", ":Dashboard <CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>db", ":Dashboard <CR>", { noremap = true, silent = true })
