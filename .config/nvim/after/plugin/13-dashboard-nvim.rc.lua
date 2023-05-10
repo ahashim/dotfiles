@@ -12,7 +12,6 @@ dashboard.setup {
         header = {
             "",
             "",
-            "",
             "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
             "88888888888888888888888888888888888888888888888888888",
             '8888"""""""""""""""8888888888888888888888888888888888',
@@ -48,7 +47,7 @@ dashboard.setup {
             limit = 3,
         },
         packages = {
-            enable = true,
+            enable = false,
         },
         project = {
             label = " Recent Projects",

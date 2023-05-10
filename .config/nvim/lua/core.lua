@@ -4,6 +4,19 @@ local set = vim.opt
 vim.g.mapleader = " "
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+vim.g.indent_blankline_filetype_exclude = {
+    "checkhealth",
+    "dashboard",
+    "help",
+    "lspinfo",
+    "man",
+    "mason",
+    "packer",
+    "terminal",
+    "TelescopePrompt",
+    "TelescopeResults",
+    "",
+}
 
 ----- General -----
 set.backupskip = { "/tmp/*", "/private/tmp/*" }
