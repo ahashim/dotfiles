@@ -187,8 +187,8 @@ keymap("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
 
 -- Diagnostic jump
 -- You can use <C-o> to jump back to your previous location
-keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
-keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
+keymap("n", "<C-j>", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
+keymap("n", "<C-k>", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
 
 -- Diagnostic jump with filters such as only jumping to an error
 keymap("n", "[E", function()
