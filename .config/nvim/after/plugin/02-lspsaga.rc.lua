@@ -51,10 +51,10 @@ saga.setup {
         quit = { "q", "<ESC>" },
     },
     lightbulb = {
-        enable = true,
-        enable_in_insert = true,
-        sign = true,
-        sign_priority = 0,
+        enable = false,
+        enable_in_insert = false,
+        sign = false,
+        sign_priority = 10,
         virtual_text = true,
     },
     outline = {
