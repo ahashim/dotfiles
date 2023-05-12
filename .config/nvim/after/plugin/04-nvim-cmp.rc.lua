@@ -26,7 +26,7 @@ cmp.setup {
             vim_item.menu = ({
                 nvim_lsp = "[LSP]",
                 nvim_lua = "[Lua]",
-                buffer = "[BUF]",
+                copilot = "[Copilot]",
             })[entry.source.name]
 
             return vim_item
