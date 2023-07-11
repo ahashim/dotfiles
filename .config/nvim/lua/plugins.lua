@@ -50,7 +50,10 @@ return require("packer").startup(function(use)
             vim.fn["mkdp#util#install"]()
         end,
     }
-    use "j-hui/fidget.nvim"
+    use {
+        "j-hui/fidget.nvim",
+        tag = "legacy",
+    }
     use "jose-elias-alvarez/null-ls.nvim"
     use "nvim-tree/nvim-tree.lua"
     use "nvim-tree/nvim-web-devicons"
