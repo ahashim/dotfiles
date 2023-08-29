@@ -211,9 +211,6 @@ alias neovim='nvim'
 alias vim='nvim'
 alias vi='nvim'
 
-# bun repl
-alias repl="bunx bun-repl"
-
 # ssh
 alias ssh='kitty +kitten ssh $@'
 
