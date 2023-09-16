@@ -206,6 +206,9 @@ alias dinofortune='fortune | xargs -0 dinosay -r | lolcat'
 # gist
 alias gist='gh gist create -'
 
+# images
+alias icat="kitty +kitten icat"
+
 # neovim
 alias neovim='nvim'
 alias vim='nvim'
