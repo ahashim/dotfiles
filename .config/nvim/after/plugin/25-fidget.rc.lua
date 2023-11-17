@@ -4,8 +4,4 @@ if not status then
     return
 end
 
-fidget.setup {
-    text = {
-        spinner = "dots",
-    },
-}
+fidget.setup {}
