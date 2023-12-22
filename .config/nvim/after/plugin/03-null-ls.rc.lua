@@ -21,7 +21,9 @@ local my_sources = {
     null_ls.builtins.diagnostics.solhint,
 
     -- formatting
-    null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.black.with {
+        extra_args = { "--line-length", "79" },
+    },
     null_ls.builtins.formatting.eslint_d,
     null_ls.builtins.formatting.fixjson,
     null_ls.builtins.formatting.gofumpt,
