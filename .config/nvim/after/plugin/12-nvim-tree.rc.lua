@@ -5,8 +5,8 @@ if not status then
 end
 
 tree.setup {
-    update_focused_file = {
-        enable = true,
+    filters = {
+        dotfiles = true,
     },
     renderer = {
         icons = {
@@ -36,6 +36,9 @@ tree.setup {
                 },
             },
         },
+    },
+    update_focused_file = {
+        enable = true,
     },
 }
 
