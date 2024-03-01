@@ -22,7 +22,6 @@ lspconfig.setup {
     ensure_installed = {
         "cssls",
         "dockerls",
-        "gopls",
         "marksman",
         "pyright",
         "lua_ls",
