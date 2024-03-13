@@ -32,6 +32,11 @@ cmd [[
   augroup end
 ]]
 
+-- No swap files for certain directories
+cmd [[
+  autocmd BufEnter,BufNewFile,BufRead ~/Workspace/critter/web/assets/* setlocal nobackup nowritebackup noswapfile
+]]
+
 return {
     hide_statusline = function()
         local api = vim.api
