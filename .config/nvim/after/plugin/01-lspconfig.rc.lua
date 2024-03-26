@@ -82,6 +82,12 @@ lspconfig.dockerls.setup {
     capabilities = capabilities,
 }
 
+-- eslint
+lspconfig.eslint.setup {
+    on_attach = common_on_attach,
+    capabilities = capabilities,
+}
+
 -- golang
 lspconfig.gopls.setup {
     on_attach = common_on_attach,
