@@ -34,6 +34,7 @@ local my_sources = {
     null_ls.builtins.formatting.prettierd.with {
         extra_args = { "--print-width", "120" },
     },
+    null_ls.builtins.formatting.reorder_python_imports,
     null_ls.builtins.formatting.rustfmt,
     null_ls.builtins.formatting.stylua,
 }
