@@ -17,7 +17,6 @@ local my_sources = {
     null_ls.builtins.diagnostics.luacheck.with {
         args = { "-g", "--formatter", "plain", "--codes", "--ranges", "--filename", "$FILENAME", "-" },
     },
-    null_ls.builtins.diagnostics.mypy,
     null_ls.builtins.diagnostics.ruff,
     null_ls.builtins.diagnostics.solhint,
 
