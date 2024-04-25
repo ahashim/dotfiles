@@ -19,6 +19,7 @@ vim.g.indent_blankline_filetype_exclude = {
 }
 
 ----- General -----
+set.backupcopy = "yes"
 set.backupskip = { "/tmp/*", "/private/tmp/*" }
 set.clipboard = "unnamedplus"
 set.colorcolumn = "80"
