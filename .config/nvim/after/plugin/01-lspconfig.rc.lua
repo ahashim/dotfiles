@@ -133,6 +133,17 @@ lspconfig.marksman.setup {
 lspconfig.pyright.setup {
     on_attach = common_on_attach,
     capabilities = capabilities,
+    settings = {
+        pyright = {
+            disableOrganizeImports = true,
+        },
+        python = {
+            analysis = {
+                ignore = { "*" },
+                typeCheckingMode = "off",
+            },
+        },
+    },
 }
 
 -- rust
