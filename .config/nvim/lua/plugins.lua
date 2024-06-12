@@ -50,6 +50,7 @@ return require("packer").startup(function(use)
             vim.fn["mkdp#util#install"]()
         end,
     }
+    use "ibhagwan/fzf-lua"
     use "j-hui/fidget.nvim"
     use "jose-elias-alvarez/null-ls.nvim"
     use "nvim-tree/nvim-tree.lua"
