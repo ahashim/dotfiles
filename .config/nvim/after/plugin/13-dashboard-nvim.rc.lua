@@ -15,10 +15,10 @@ dashboard.setup {
             "",
             "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
             "88888888888888888888888888888888888888888888888888888",
-            '8888"""""""""""""""8888888888888888888888888888888888',
-            "8888               8888888888888888888888888888888888",
-            "8888  " .. title .. "  8888888888888888888888888888888888",
-            '8888               888888888888888888888888888888888"',
+            '8888""""""""""""""""888888888888888888888888888888888',
+            "8888                888888888888888888888888888888888",
+            "8888  " .. title .. "  888888888888888888888888888888888",
+            '8888                88888888888888888888888888888888"',
             "8888aaaaaaaaaaaaaaa888888888888888888888888888888888a",
             "88888888888888888888888888888888888888888888888888888",
             "88888888888888888888888888888888888888888888888888888",
@@ -89,5 +89,6 @@ dashboard.setup {
 }
 
 -- mappings
-vim.keymap.set("n", "<leader>db", ":Dashboard <CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>db", ":Dashboard <CR>", { noremap = true, silent = true })
+local opts = { noremap = true, silent = true }
+vim.keymap.set("n", "<leader>db", ":Dashboard <CR>", opts)
+vim.keymap.set("n", "<leader>db", ":Dashboard <CR>", opts)
