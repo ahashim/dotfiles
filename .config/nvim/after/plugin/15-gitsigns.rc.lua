@@ -5,74 +5,54 @@ if not status then
 end
 
 gitsigns.setup {
-    attach_to_untracked = true,
-    current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
-    current_line_blame_opts = {
-        virt_text = true,
-        virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
-        delay = 1000,
-        ignore_whitespace = false,
-    },
-    current_line_blame_formatter_opts = {
-        relative_time = false,
-    },
-    linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
-    max_file_length = 40000,
-    numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
     on_attach = function(bufnr)
-        local function map(mode, lhs, rhs, opts)
-            opts = vim.tbl_extend("force", { noremap = true, silent = true }, opts or {})
-            vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
+        local function map(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
         end
 
         -- Navigation
-        map("n", "]c", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true })
-        map("n", "[c", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true })
+        map("n", "]c", function()
+            if vim.wo.diff then
+                vim.cmd.normal { "]c", bang = true }
+            else
+                gitsigns.nav_hunk "next"
+            end
+        end)
+
+        map("n", "[c", function()
+            if vim.wo.diff then
+                vim.cmd.normal { "[c", bang = true }
+            else
+                gitsigns.nav_hunk "prev"
+            end
+        end)
 
         -- Actions
-        map("n", "<leader>hs", ":Gitsigns stage_hunk<CR>")
-        map("v", "<leader>hs", ":Gitsigns stage_hunk<CR>")
-        map("n", "<leader>hr", ":Gitsigns reset_hunk<CR>")
-        map("v", "<leader>hr", ":Gitsigns reset_hunk<CR>")
-        map("n", "<leader>hS", "<cmd>Gitsigns stage_buffer<CR>")
-        map("n", "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<CR>")
-        map("n", "<leader>hR", "<cmd>Gitsigns reset_buffer<CR>")
-        map("n", "<leader>hp", "<cmd>Gitsigns preview_hunk<CR>")
-        map("n", "<leader>hb", '<cmd>lua require"gitsigns".blame_line{full=true}<CR>')
-        map("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<CR>")
-        map("n", "<leader>hd", "<cmd>Gitsigns diffthis<CR>")
-        map("n", "<leader>hD", '<cmd>lua require"gitsigns".diffthis("~")<CR>')
-        map("n", "<leader>td", "<cmd>Gitsigns toggle_deleted<CR>")
+        map("n", "<leader>hs", gitsigns.stage_hunk)
+        map("n", "<leader>hr", gitsigns.reset_hunk)
+        map("v", "<leader>hs", function()
+            gitsigns.stage_hunk { vim.fn.line ".", vim.fn.line "v" }
+        end)
+        map("v", "<leader>hr", function()
+            gitsigns.reset_hunk { vim.fn.line ".", vim.fn.line "v" }
+        end)
+        map("n", "<leader>hS", gitsigns.stage_buffer)
+        map("n", "<leader>hu", gitsigns.undo_stage_hunk)
+        map("n", "<leader>hR", gitsigns.reset_buffer)
+        map("n", "<leader>hp", gitsigns.preview_hunk)
+        map("n", "<leader>hb", function()
+            gitsigns.blame_line { full = true }
+        end)
+        map("n", "<leader>tb", gitsigns.toggle_current_line_blame)
+        map("n", "<leader>hd", gitsigns.diffthis)
+        map("n", "<leader>hD", function()
+            gitsigns.diffthis "~"
+        end)
+        map("n", "<leader>td", gitsigns.toggle_deleted)
 
         -- Text object
-        map("o", "ih", ":<C-U>Gitsigns select_hunk<CR>")
-        map("x", "ih", ":<C-U>Gitsigns select_hunk<CR>")
+        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
     end,
-    preview_config = {
-        -- Options passed to nvim_open_win
-        border = "single",
-        style = "minimal",
-        relative = "cursor",
-        row = 0,
-        col = 1,
-    },
-    signs = {
-        add = { hl = "GitSignsAdd", text = "│", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-        change = { hl = "GitSignsChange", text = "│", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-        delete = { hl = "GitSignsDelete", text = "", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-        topdelete = { hl = "GitSignsDelete", text = "‾", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-        changedelete = { hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-    },
-    signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-    sign_priority = 6,
-    update_debounce = 100,
-    word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
-    watch_gitdir = {
-        interval = 1000,
-        follow_files = true,
-    },
-    status_formatter = nil, -- Use default
-    yadm = {
-        enable = false,
-    },
 }
