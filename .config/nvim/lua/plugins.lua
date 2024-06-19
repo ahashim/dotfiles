@@ -37,7 +37,7 @@ packer.init {
 return require("packer").startup(function(use)
     use {
         "akinsho/bufferline.nvim",
-        tag = "v2.*",
+        tag = "*",
     }
     use "folke/trouble.nvim"
     use "hrsh7th/nvim-cmp"
