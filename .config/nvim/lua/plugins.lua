@@ -82,7 +82,6 @@ return require("packer").startup(function(use)
     use "rafamadriz/friendly-snippets"
     use "saadparwaiz1/cmp_luasnip"
     use "simrat39/rust-tools.nvim"
-    use "TovarishFin/vim-solidity"
     use "tpope/vim-fugitive"
     use "williamboman/mason.nvim"
     use "williamboman/mason-lspconfig.nvim"
