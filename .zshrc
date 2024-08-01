@@ -155,7 +155,10 @@ zstyle ':zim:completion' dumpfile "$ZSH_HOME/completion/zcompdump"
 # bun
 source "$BUN_INSTALL/_bun"
 
-#nvm
+# k8s
+source <(kubectl completion zsh)
+
+# nvm
 source "$NVM_DIR/nvm.sh"
 source "$NVM_DIR/bash_completion"
 
