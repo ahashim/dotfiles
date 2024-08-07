@@ -141,6 +141,7 @@ export LOCAL="$HOME/.local"
 export MINIO="$HOME/minio-binaries"
 export NVM_DIR="$HOME/.nvm"
 export PNPM_HOME="$LOCAL/share/pnpm"
+export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"
 export ZSH_HOME="$HOME/.zsh"
 
 # Path
