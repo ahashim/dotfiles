@@ -155,6 +155,9 @@ zstyle ':zim:completion' dumpfile "$ZSH_HOME/completion/zcompdump"
 # bun
 source "$BUN_INSTALL/_bun"
 
+# homebrew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 # k8s
 source <(kubectl completion zsh)
 
