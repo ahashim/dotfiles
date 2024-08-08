@@ -70,6 +70,12 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- Language Servers --
 ----------------------
 
+-- protobuf
+require 'lspconfig'.bufls.setup {
+  on_attach = common_on_attach,
+  capabilities = capabilities,
+}
+
 -- css
 lspconfig.cssls.setup {
   on_attach = common_on_attach,
