@@ -131,6 +131,7 @@ unset key
 ## -------- CORE
 
 # Environment Variables
+export AWS_PROFILE=Engineers
 export BUN_INSTALL="$HOME/.bun"
 export EDITOR='vim'
 export GOPATH="$HOME/go"
