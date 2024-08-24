@@ -145,9 +145,6 @@ export PNPM_HOME="$LOCAL/share/pnpm"
 export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"
 export ZSH_HOME="$HOME/.zsh"
 
-# Path
-export PATH="$PNPM_HOME:$LOCAL/bin:$BUN_INSTALL/bin:$PATH:$GOROOT/bin:$GOPATH/bin:$CARGO/bin:$MINIO"
-
 # Completion
 zstyle ':zim:completion' dumpfile "$ZSH_HOME/completion/zcompdump"
 
@@ -166,6 +163,10 @@ source <(kubectl completion zsh)
 # nvm
 source "$NVM_DIR/nvm.sh"
 source "$NVM_DIR/bash_completion"
+
+
+## -------- PATH
+export PATH="$GOROOT/bin:$GOPATH/bin:$LOCAL/bin:$PNPM_HOME:$BUN_INSTALL/bin:$PATH:$CARGO/bin:$MINIO"
 
 
 ## -------- FUNCTIONS
