@@ -227,7 +227,7 @@ lspconfig.taplo.setup {
 }
 
 -- typescript
-lspconfig.tsserver.setup {
+lspconfig.ts_ls.setup {
   on_attach = function(client, bufnr)
     common_on_attach(client, bufnr)
 
