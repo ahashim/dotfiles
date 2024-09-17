@@ -225,7 +225,7 @@ alias ssh='kitty +kitten ssh $@'
 
 # unix
 alias du='du -hs * | sort -h'
-alias ll='exa -al --no-user'
+alias ll='eza -al --no-user'
 
 
 ## -------- OS OVERRIDES
