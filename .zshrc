@@ -142,7 +142,6 @@ export LOCAL="$HOME/.local"
 export MINIO="$HOME/minio-binaries"
 export NVM_DIR="$HOME/.nvm"
 export PNPM_HOME="$LOCAL/share/pnpm"
-export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"
 export ZSH_HOME="$HOME/.zsh"
 
 # Completion
@@ -153,9 +152,6 @@ zstyle ':zim:completion' dumpfile "$ZSH_HOME/completion/zcompdump"
 
 # bun
 source "$BUN_INSTALL/_bun"
-
-# homebrew
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # k8s
 source <(kubectl completion zsh)
@@ -229,7 +225,7 @@ alias ssh='kitty +kitten ssh $@'
 
 # unix
 alias du='du -hs * | sort -h'
-alias ll='exa -al --no-user'
+alias ll='eza -al --no-user'
 
 
 ## -------- OS OVERRIDES
