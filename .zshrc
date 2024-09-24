@@ -139,7 +139,6 @@ export GOROOT="/usr/local/go"
 export GPG_TTY='2E746699667C1969'
 export LANG=en_US.UTF-8
 export LOCAL="$HOME/.local"
-export MINIO="$HOME/minio-binaries"
 export NVM_DIR="$HOME/.nvm"
 export PNPM_HOME="$LOCAL/share/pnpm"
 export ZSH_HOME="$HOME/.zsh"
@@ -162,7 +161,7 @@ source "$NVM_DIR/bash_completion"
 
 
 ## -------- PATH
-export PATH="$GOROOT/bin:$GOPATH/bin:$LOCAL/bin:$PNPM_HOME:$BUN_INSTALL/bin:$PATH:$CARGO/bin:$MINIO"
+export PATH="$GOROOT/bin:$GOPATH/bin:$LOCAL/bin:$PNPM_HOME:$BUN_INSTALL/bin:$PATH:$CARGO/bin"
 
 
 ## -------- FUNCTIONS
