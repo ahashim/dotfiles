@@ -2,8 +2,10 @@
 export ARCHFLAGS="-arch x86_64"
 export XDG_DATA_DIRS="/home/linuxbrew/.linuxbrew/share:$XDG_DATA_DIRS"
 
-# Sources
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# PATH
+export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin"
+export INFOPATH="$INFOPATH:/home/linuxbrew/.linuxbrew/share/info"
 
 # System update
 function up() {
