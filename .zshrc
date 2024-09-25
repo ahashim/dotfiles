@@ -205,6 +205,9 @@ function u() {
 
 ## -------- ALIASES
 
+# xclip
+alias clip='xclip -selection clipboard'
+
 # fortune
 alias dinofortune='fortune | xargs -0 dinosay -r | lolcat'
 
