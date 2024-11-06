@@ -71,7 +71,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 ----------------------
 
 -- protobuf
-require 'lspconfig'.bufls.setup {
+require 'lspconfig'.buf_ls.setup {
   on_attach = common_on_attach,
   capabilities = capabilities,
 }
