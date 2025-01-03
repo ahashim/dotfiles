@@ -1,0 +1,13 @@
+adjust-cell-width = 3%
+background-opacity = 0.85
+font-family = Operator Mono Book
+font-family = Symbols Nerd Font
+font-family-bold = Operator Mono Medium
+font-family-bold = Symbols Nerd Font
+font-family-italic = Operator Mono Book Italic
+font-family-italic = Symbols Nerd Font
+font-family-bold-italic = Operator Mono Medium Italic
+font-family-bold-italic = Symbols Nerd Font
+font-size = 14
+window-decoration = false
+window-padding-x = 8
