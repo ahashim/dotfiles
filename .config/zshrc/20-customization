@@ -1,0 +1,69 @@
+# -----------------------------------------------------
+# CUSTOMIZATION
+# -----------------------------------------------------
+POSH=half-life
+
+# -----------------------------------------------------
+# oh-myzsh themes: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# -----------------------------------------------------
+# ZSH_THEME=robbyrussell
+
+# -----------------------------------------------------
+# oh-myzsh plugins
+# -----------------------------------------------------
+plugins=(
+    git
+    sudo
+    web-search
+    archlinux
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    copyfile
+    copybuffer
+    dirhistory
+)
+
+# Set-up oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+
+# -----------------------------------------------------
+# Set-up FZF key bindings (CTRL R for fuzzy history finder)
+# -----------------------------------------------------
+source <(fzf --zsh)
+
+# zsh history
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+
+# -----------------------------------------------------
+# Prompt
+# -----------------------------------------------------
+# eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
+# eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/EDM115-newline.omp.json)"
+
+# Shipped Theme
+eval "$(oh-my-posh init zsh --config /usr/share/oh-my-posh/themes/half-life.omp.json)"
+
+# Z oxide directory jumper
+eval "$(zoxide init zsh)"
+
+# -----------------------------------------------------
+# Functions 
+# -----------------------------------------------------
+
+# Search & replace a string in all files recursively from within the current
+# directory.
+# `s oldString newString`
+function s() {
+  find . \( -type d -name .git -prune \) -o -type f -print0 \
+    | xargs -0 sed -i "s/$1/$2/g"
+  echo "Replaced all occurrences of '$1' with '$2'"
+}
+
+# Traverse `n` directories upwards
+# `u 2` == `cd ../..`
+function u() {
+  cd $(printf "%0.0s../" $(seq 1 $1));
+}
