@@ -1,0 +1,82 @@
+# -----------------------------------------------------
+# ALIASES
+# -----------------------------------------------------
+alias copy='wl-copy'
+alias du='du -hs * | sort -h'
+alias gist='gh gist create -'
+alias icat="kitty +kitten icat"
+alias ssh='kitty +kitten ssh $@'
+alias vi='nvim'
+
+# -----------------------------------------------------
+# COMPLETIONS
+# -----------------------------------------------------
+
+# load completion cache
+zstyle ':completion:*' use-cache yes
+zstyle ':completion:*' cache-path $HOME/.cache/zsh/zcompcache
+
+# options
+setopt COMPLETE_IN_WORD   # Complete from both ends of a word
+setopt GLOB_DOTS          # Include hidden files
+setopt AUTO_LIST          # Automatically list choices on ambiguous completion
+setopt AUTO_MENU          # Automatically use menu completion
+
+# styling
+zstyle ':completion:*' menu select                      # Interactive completion menu
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}   # Colored completion menu
+zstyle ':completion:*' list-dirs-first true             # Separate directories from files
+zstyle ':completion:*' group-name ''                    # Group matches by type
+
+# matching rules
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'   # Case insensitive, partial word, substring completion
+
+# process completion
+zstyle ':completion:*:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+
+# ignore functions for commands not in $PATH
+zstyle ':completion:*:functions' ignored-patterns '_*'
+
+# better SSH/SCP/RSYNC completion
+zstyle ':completion:*:(scp|rsync):*' tag-order 'hosts:-host:host hosts:-domain:domain hosts:-ipaddr:ip\ address *'
+zstyle ':completion:*:(ssh|scp|rsync):*:hosts-host' ignored-patterns '*(.|:)*' loopback ip6-loopback localhost ip6-localhost broadcasthost
+zstyle ':completion:*:(ssh|scp|rsync):*:hosts-domain' ignored-patterns '<->.<->.<->.<->' '^[-[:alnum:]]##(.[-[:alnum:]]##)##' '*@*'
+zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<->.<->.<->|(|::)([[:xdigit:].]##:(#c,2))##(|%*))' '127.0.0.<->' '255.255.255.255' '::1' 'fe80::*'
+
+# -----------------------------------------------------
+# EXPORTS
+# -----------------------------------------------------
+export AWS_PROFILE="Engineers"
+export GOPATH="$HOME/go"
+export GPG_TTY=$(tty)
+export HIST_STAMPS="yyyy-mm-dd"
+export NVM_DIR="$HOME/.config/nvm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH="$HOME/.cache/.bun/bin:$PNPM_HOME:$PATH:$GOROOT/bin:$GOPATH/bin"
+
+# -----------------------------------------------------
+# FUNCTIONS
+# -----------------------------------------------------
+# Search & replace a string in all files recursively from within the current
+# directory.
+# `s oldString newString`
+function s() {
+  find . \( -type d -name .git -prune \) -o -type f -print0 \
+    | xargs -0 sed -i "s/$1/$2/g"
+  echo "Replaced all occurrences of '$1' with '$2'"
+}
+
+# Traverse `n` directories upwards
+# `u 2` == `cd ../..`
+function u() {
+  cd $(printf "%0.0s../" $(seq 1 $1));
+}
+
+# -----------------------------------------------------
+# INIT
+# -----------------------------------------------------
+eval "$(oh-my-posh init zsh --config /usr/share/oh-my-posh/themes/half-life.omp.json)"
+eval "$(zoxide init zsh)"
+autoload -Uz compinit && compinit
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
