@@ -25,7 +25,7 @@
 
     // Modules Left
     "modules-left": [
-        "custom/appmenu",
+"custom/appmenu",
         "hyprland/workspaces",
         "group/links",
 //"wlr/taskbar",
@@ -46,7 +46,7 @@
 //"backlight",
         "bluetooth",
         "battery", 
-        //"network",
+//"network",
         "group/hardware",
         "group/tools",
 "tray",

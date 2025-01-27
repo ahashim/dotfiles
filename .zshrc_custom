@@ -48,12 +48,13 @@ zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<-
 # EXPORTS
 # -----------------------------------------------------
 export AWS_PROFILE="Engineers"
+export BUN_INSTALL="$HOME/.bun"
 export GOPATH="$HOME/go"
 export GPG_TTY=$(tty)
 export HIST_STAMPS="yyyy-mm-dd"
 export NVM_DIR="$HOME/.config/nvm"
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$HOME/.cache/.bun/bin:$PNPM_HOME:$PATH:$GOROOT/bin:$GOPATH/bin"
+export PATH="$HOME/.cache/.bun/bin:$GOROOT/bin:$GOPATH/bin:$BUN_INSTALL/bin:$PNPM_HOME:$PATH:$PATH"
 
 # -----------------------------------------------------
 # FUNCTIONS
@@ -79,4 +80,6 @@ function u() {
 eval "$(oh-my-posh init zsh --config /usr/share/oh-my-posh/themes/half-life.omp.json)"
 eval "$(zoxide init zsh)"
 autoload -Uz compinit && compinit
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+[ -s "/home/ahmed/.bun/_bun" ] && source "/home/ahmed/.bun/_bun"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
