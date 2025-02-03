@@ -1,3 +1,4 @@
 .config/ml4w/cache/
 .config/nvim/lazy-lock.json
 .config/pgcli/log
+.config/pgcli/history
