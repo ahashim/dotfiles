@@ -77,7 +77,7 @@ function u() {
 # -----------------------------------------------------
 # INIT
 # -----------------------------------------------------
-eval "$(oh-my-posh init zsh --config /usr/share/oh-my-posh/themes/half-life.omp.json)"
+eval "$(oh-my-posh init zsh -c ~/.config/ohmyposh/lambda.omp.json)"
 eval "$(zoxide init zsh)"
 autoload -Uz compinit && compinit
 
