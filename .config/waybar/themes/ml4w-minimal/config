@@ -56,7 +56,7 @@
 
     // Modules Left
     "modules-left": [
-        "custom/appmenuicon",
+"custom/appmenuicon",
         "hyprland/workspaces",
         "group/links",
         "group/quicklinks",
