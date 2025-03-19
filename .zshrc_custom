@@ -54,7 +54,8 @@ export GPG_TTY=$(tty)
 export HIST_STAMPS="yyyy-mm-dd"
 export NVM_DIR="$HOME/.config/nvm"
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$GOROOT/bin:$GOPATH/bin:$HOME/.cache/.bun/bin:$BUN_INSTALL/bin:$PNPM_HOME:$HOME/.local/share/../bin:$PATH"
+export SNAP="/var/lib/snapd/snap/bin:/snap/bin"
+export PATH="$GOROOT/bin:$GOPATH/bin:$HOME/.cache/.bun/bin:$BUN_INSTALL/bin:$PNPM_HOME:$HOME/.local/share/../bin:$SNAP:$PATH"
 
 # -----------------------------------------------------
 # FUNCTIONS
