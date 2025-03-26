@@ -48,14 +48,13 @@ zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<-
 # EXPORTS
 # -----------------------------------------------------
 export AWS_PROFILE="Engineers"
-export BUN_INSTALL="$HOME/.bun"
+export BUN="$HOME/.bun"
 export GOPATH="$HOME/go"
 export GPG_TTY=$(tty)
 export HIST_STAMPS="yyyy-mm-dd"
-export NVM_DIR="$HOME/.config/nvm"
-export PNPM_HOME="$HOME/.local/share/pnpm"
-export SNAP="/var/lib/snapd/snap/bin:/snap/bin"
-export PATH="$GOROOT/bin:$GOPATH/bin:$HOME/.cache/.bun/bin:$BUN_INSTALL/bin:$PNPM_HOME:$HOME/.local/share/../bin:$SNAP:$PATH"
+export NVM="$HOME/.config/nvm"
+export PNPM="$HOME/.local/share/pnpm"
+export PATH="$GOROOT/bin:$GOPATH/bin:$HOME/.cache/.bun/bin:$BUN/bin:$PNPM:$HOME/.local/share/../bin:$PATH"
 
 # -----------------------------------------------------
 # FUNCTIONS
@@ -81,6 +80,5 @@ function u() {
 eval "$(oh-my-posh init zsh -c ~/.config/ohmyposh/lambda.omp.json)"
 eval "$(zoxide init zsh)"
 autoload -Uz compinit && compinit
-
-[ -s "/home/ahmed/.bun/_bun" ] && source "/home/ahmed/.bun/_bun"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$BUN/_bun" ] && source "$BUN/_bun"
+[ -s "$NVM/nvm.sh" ] && \. "$NVM/nvm.sh"
