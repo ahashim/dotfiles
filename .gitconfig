@@ -196,6 +196,7 @@
     theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
     subrepo = !sh -c 'git filter-branch --prune-empty --subdirectory-filter $1 main' -
     human = name-rev --name-only --refs=refs/heads/*
+    sync = !git fetch --prune && git pull && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D
 
 [branch]
     autosetuprebase = always
