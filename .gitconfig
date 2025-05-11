@@ -222,7 +222,7 @@
     untracked = red bold
 
 [commit]
-    gpgsign = true
+	gpgsign = true
 
 [core]
     editor = nvim
@@ -296,6 +296,7 @@
     name = Ahmed Hashim
     email = ahashim@users.noreply.github.com
     username = ahashim
+    signingkey = 928ABC9AF2A527E6C7A3E5077F79712C5D78824F
 
 [web]
     browser = firefox
@@ -305,3 +306,5 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
+[gpg]
+	program = /opt/homebrew/bin/gpg
