@@ -20,7 +20,7 @@
       "default": ""
     },
     "persistent-workspaces": {
-      "*": 3
+      "*": 5
     }
   },
 
@@ -232,7 +232,7 @@
 
   // Clock
   "clock": {
-    "format": "{:%H:%M %Om/%Od/%y}",
+    "format": "{:%H:%M %a}",
     "on-click": "flatpak run com.ml4w.calendar",
     "timezone": "",
     "tooltip": false
@@ -290,7 +290,7 @@
     "modules": [
       "custom/tools",
       "custom/cliphist",
-      //"custom/hypridle",
+      "custom/hypridle",
       "custom/hyprshade"
     ]
   },
@@ -299,7 +299,7 @@
   "group/links": {
     "orientation": "horizontal",
     "modules": [
-      //"custom/chatgpt",
+//      "custom/chatgpt",
       "custom/empty"
     ]
   },

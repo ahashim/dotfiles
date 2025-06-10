@@ -52,7 +52,7 @@
 //"backlight",
         "bluetooth",
         "battery", 
-//"network",
+"network",
         "group/hardware",
         "custom/cliphist",
         "custom/hypridle",
