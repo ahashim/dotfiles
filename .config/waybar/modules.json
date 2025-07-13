@@ -20,7 +20,7 @@
       "default": ""
     },
     "persistent-workspaces": {
-            "*": 3
+      "*": 3
     }
   },
 
@@ -88,6 +88,8 @@
     "return-type": "json",
     "exec": "~/.config/ml4w/scripts/updates.sh",
     "interval": 1800,
+    "signal": 1,
+    "hide-empty-text": true,
     "on-click": "~/.config/ml4w/settings/installupdates.sh",
     "on-click-right": "~/.config/ml4w/settings/software.sh"
   },
@@ -119,13 +121,6 @@
     "format": "",
     "on-click": "~/.config/hypr/scripts/keybindings.sh",
     "tooltip": false
-  },
-
-  // ChatGPT Launcher
-  "custom/chatgpt": {
-    "format": " ",
-    "on-click": "~/.config/ml4w/settings/ai.sh",
-    "tooltip-format": "AI Support"
   },
 
   // Calculator
@@ -299,7 +294,7 @@
   "group/links": {
     "orientation": "horizontal",
     "modules": [
-//      "custom/chatgpt",
+      "custom/chatgpt",
       "custom/empty"
     ]
   },
