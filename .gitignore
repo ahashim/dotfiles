@@ -3,3 +3,4 @@
 .config/pgcli/log
 .config/pgcli/history
 .sqls.yml
+.claude
