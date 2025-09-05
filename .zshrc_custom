@@ -52,6 +52,7 @@ export BUN="$HOME/.bun"
 export GOPATH="$HOME/go"
 export GPG_TTY=$(tty)
 export HIST_STAMPS="yyyy-mm-dd"
+export NODE_OPTIONS="--max-old-space-size=8192"
 export NVM="$HOME/.config/nvm"
 export PNPM="$HOME/.local/share/pnpm"
 export PATH="$GOROOT/bin:$GOPATH/bin:$HOME/.cache/.bun/bin:$BUN/bin:$PNPM:$HOME/.local/share/../bin:$PATH"
