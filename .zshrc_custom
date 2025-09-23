@@ -55,7 +55,7 @@ export HIST_STAMPS="yyyy-mm-dd"
 export NODE_OPTIONS="--max-old-space-size=16384"
 export NVM="$HOME/.config/nvm"
 export PNPM="$HOME/.local/share/pnpm"
-export PATH="$GOROOT/bin:$GOPATH/bin:$HOME/.cache/.bun/bin:$BUN/bin:$PNPM:$HOME/.local/share/../bin:$PATH"
+export PATH="$GOROOT/bin:$GOPATH/bin:$HOME/.cache/.bun/bin:$BUN/bin:$PNPM:$HOME/.local/bin:$PATH"
 
 # -----------------------------------------------------
 # FUNCTIONS
