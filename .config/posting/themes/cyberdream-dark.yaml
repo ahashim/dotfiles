@@ -1,0 +1,37 @@
+name: cyberdream-dark
+primary: '#5ea1ff'
+secondary: '#bd5eff'
+accent: '#ff5ef1'
+background: '#16181a'
+surface: '#1e2124'
+error: '#ff6e5e'
+success: '#5eff6c'
+warning: '#f1ff5e'
+
+author: Cyberdream-inspired
+description: Neon-accented dark theme inspired by scottmckendry/cyberdream.nvim.
+
+text_area:
+  cursor: 'reverse'
+  cursor_line: '#ffffff on #223b6b'
+  cursor_line_gutter: '#7b8496 on #223b6b'
+  selection: 'reverse'
+  gutter: 'bold #7b8496'
+  matched_bracket: 'black on #5ef1ff'
+
+url:
+  base: '#ffffff'
+  protocol: 'bold #5ef1ff'
+
+syntax:
+  json_key: '#ffbd5e'
+  json_number: '#5ef1ff'
+  json_string: '#ff5ea0'
+  json_boolean: '#5eff6c'
+  json_null: 'underline #7b8496'
+
+method:
+  get: 'bold #5eff6c'
+  post: 'bold #5ea1ff'
+  put: 'bold #f1ff5e'
+  delete: 'bold #ff6e5e'

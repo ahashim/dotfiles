@@ -1,0 +1,37 @@
+name: cyberdream-light
+primary: '#0057d1'
+secondary: '#a018ff'
+accent: '#d100bf'
+background: '#ffffff'
+surface: '#eaeaea'
+error: '#d11500'
+success: '#008b0c'
+warning: '#997b00'
+
+author: Cyberdream-inspired
+description: Vibrant light theme matching the cyberdream.nvim palette.
+
+text_area:
+  cursor: 'reverse'
+  cursor_line: '#16181a on #dbe7ff'
+  cursor_line_gutter: '#7b8496 on #dbe7ff'
+  selection: 'reverse'
+  gutter: 'bold #7b8496'
+  matched_bracket: '#16181a on #5ef1ff'
+
+url:
+  base: '#16181a'
+  protocol: 'bold #0057d1'
+
+syntax:
+  json_key: '#d17c00'
+  json_number: '#008c99'
+  json_string: '#f40064'
+  json_boolean: '#008b0c'
+  json_null: 'underline #7b8496'
+
+method:
+  get: 'bold #008b0c'
+  post: 'bold #0057d1'
+  put: 'bold #997b00'
+  delete: 'bold #d11500'
