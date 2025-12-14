@@ -2,32 +2,32 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "blocks": [
     {
+      "type": "prompt",
       "alignment": "left",
       "segments": [
         {
-          "foreground": "#7E46B6",
-          "style": "plain",
           "template": "{{ .UserName }} ",
-          "type": "session"
+          "foreground": "#7E46B6",
+          "type": "session",
+          "style": "plain"
         },
         {
-          "foreground": "#ffffff",
-          "style": "plain",
           "template": "in ",
-          "type": "text"
+          "foreground": "#ffffff",
+          "type": "text",
+          "style": "plain"
         },
         {
-          "foreground": "#87FF00",
-          "properties": {
+          "options": {
             "style": "full"
           },
-          "style": "plain",
           "template": "{{ .Path }} ",
-          "type": "path"
+          "foreground": "#87FF00",
+          "type": "path",
+          "style": "plain"
         },
         {
-          "foreground": "#5FD7FF",
-          "properties": {
+          "options": {
             "branch_ahead_icon": "",
             "branch_behind_icon": "",
             "branch_gone_icon": "",
@@ -41,28 +41,28 @@
             "revert_icon": "",
             "tag_icon": ""
           },
-          "style": "plain",
           "template": "<#ffffff>on</> {{ .HEAD }}{{ if .Staging.Changed }}<#87FF00> \u25cf {{ .Staging.String }}</>{{ end }}{{ if .Working.Changed }}<#D75F00> \u25cf {{ .Working.String }}</>{{ end }} ",
-          "type": "git"
+          "foreground": "#5FD7FF",
+          "type": "git",
+          "style": "plain"
         },
         {
-          "type": "python",
-          "style": "plain",
-          "foreground": "#906cff",
-          "template": "{{ if .Venv }} ({{ .Venv }}) {{ end }}",
-          "properties": {
+          "options": {
             "display_mode": "environment"
-          }
+          },
+          "template": "{{ if .Venv }}\ue235 ({{ .Venv }}) {{ end }}",
+          "foreground": "#906cff",
+          "type": "python",
+          "style": "plain"
         },
         {
-          "foreground": "#D75F00",
-          "style": "plain",
           "template": "λ ",
-          "type": "text"
+          "foreground": "#D75F00",
+          "type": "text",
+          "style": "plain"
         }
-      ],
-      "type": "prompt"
+      ]
     }
   ],
-  "version": 3
+  "version": 4
 }
