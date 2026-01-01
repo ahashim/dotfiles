@@ -47,7 +47,7 @@ zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<-
 # -----------------------------------------------------
 # EXPORTS
 # -----------------------------------------------------
-export AWS_PROFILE="Engineers"
+export AWS_PROFILE="personal"
 export BUN="$HOME/.bun"
 export GOPATH="$HOME/go"
 export GPG_TTY=$(tty)
