@@ -59,6 +59,12 @@ export PATH="$GOROOT/bin:$GOPATH/bin:$HOME/.cache/.bun/bin:$BUN/bin:$PNPM:$HOME/
 # -----------------------------------------------------
 # FUNCTIONS
 # -----------------------------------------------------
+# Switch AWS profiles
+aws-use() {
+  export AWS_PROFILE="$1"
+  aws sts get-caller-identity --query Arn --output text
+}
+
 # Search & replace a string in all files recursively from within the current
 # directory.
 # `s oldString newString`
