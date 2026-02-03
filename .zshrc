@@ -8,7 +8,8 @@ export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
 export GPG_TTY=$(tty)
 export NODE_OPTIONS="--max-old-space-size=16384"
 export NVM_DIR="$HOME/.nvm"
-export PATH=$HOME/.opencode/bin:$BUN_INSTALL/bin:$PATH
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH=$HOME/.opencode/bin:$BUN_INSTALL/bin:$PNPM_HOME:$PATH
 
 # Options
 setopt COMPLETE_IN_WORD
@@ -54,16 +55,16 @@ aws-use() {
 
 s() {
   [[ -z "$1" || -z "$2" ]] && echo "Usage: s <old> <new>" && return 1
-  
+
   # Escape special characters for sed
   local old_escaped=$(printf '%s\n' "$1" | sed 's/[[\.*^$()+?{|/]/\\&/g')
   local new_escaped=$(printf '%s\n' "$2" | sed 's/[&/\]/\\&/g')
-  
+
   # Find matching files using ripgrep (fixed strings)
   local files=(${(f)"$(rg --files-with-matches --fixed-strings --hidden --glob '!.git' -- "$1" 2>/dev/null)"})
-  
+
   [[ ${#files[@]} -eq 0 ]] && echo "No matches found for '$1'" && return 0
-  
+
   printf '%s\0' "${files[@]}" | xargs -0 sed -i "s/$old_escaped/$new_escaped/g"
   echo "Replaced '$1' with '$2' in ${#files[@]} file(s)"
 }
