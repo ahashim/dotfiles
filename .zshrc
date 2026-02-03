@@ -1,4 +1,5 @@
 # Environment
+typeset -U PATH
 export BUN_INSTALL="$HOME/.bun"
 export EDITOR=nvim
 export VISUAL=nvim
@@ -9,7 +10,7 @@ export GPG_TTY=$(tty)
 export NODE_OPTIONS="--max-old-space-size=16384"
 export NVM_DIR="$HOME/.nvm"
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH=$HOME/.opencode/bin:$BUN_INSTALL/bin:$PNPM_HOME:$HOME/.local/bin/env:$PATH
+export PATH=$HOME/.opencode/bin:$BUN_INSTALL/bin:$PNPM_HOME:$HOME/.local/bin:$PATH
 
 # Options
 setopt COMPLETE_IN_WORD
