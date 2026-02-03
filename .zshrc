@@ -1,14 +1,14 @@
 # Environment
+export BUN_INSTALL="$HOME/.bun"
 export EDITOR=nvim
 export VISUAL=nvim
 export FZF_PREVIEW_ADVANCED=1
-export FZF_PREVIEW_WINDOW='right:40%:nohidden'
-export FZF_DEFAULT_OPTS="--preview-window=${FZF_PREVIEW_WINDOW} --preview $HOME/.config/fzf/preview.sh\ {}"
+export FZF_DEFAULT_OPTS="--preview-window='right:40%:nohidden' --preview $HOME/.config/fzf/preview.sh\ {}"
 export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
 export GPG_TTY=$(tty)
 export NODE_OPTIONS="--max-old-space-size=16384"
 export NVM_DIR="$HOME/.nvm"
-export PATH=$HOME/.opencode/bin:$PATH
+export PATH=$HOME/.opencode/bin:$BUN_INSTALL/bin:$PATH
 
 # Options
 setopt COMPLETE_IN_WORD
@@ -68,4 +68,5 @@ eval "$(oh-my-posh init zsh -c $HOME/.config/ohmyposh/lambda.omp.json)"
 zsh-defer eval "$(zoxide init zsh)"
 zsh-defer source "$NVM_DIR/nvm.sh"
 zsh-defer source "$NVM_DIR/bash_completion"
+zsh-defer source "$BUN_INSTALL/_bun"
 ff
