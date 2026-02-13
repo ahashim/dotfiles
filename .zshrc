@@ -55,25 +55,7 @@ aws-use() {
   aws sts get-caller-identity --query Arn --output text
 }
 
-s() {
-  [[ -z "$1" || -z "$2" ]] && echo "Usage: s <old> <new>" && return 1
-
-  # Escape special characters for sed
-  local old_escaped=$(printf '%s\n' "$1" | sed 's/[[\.*^$()+?{|/]/\\&/g')
-  local new_escaped=$(printf '%s\n' "$2" | sed 's/[&/\]/\\&/g')
-
-  # Find matching files using ripgrep (fixed strings)
-  local files=(${(f)"$(rg --files-with-matches --fixed-strings --hidden --glob '!.git' -- "$1" 2>/dev/null)"})
-
-  [[ ${#files[@]} -eq 0 ]] && echo "No matches found for '$1'" && return 0
-
-  printf '%s\0' "${files[@]}" | xargs -0 sed -i "s/$old_escaped/$new_escaped/g"
-  echo "Replaced '$1' with '$2' in ${#files[@]} file(s)"
-}
-
 u() { cd $(printf '../%.0s' {1..${1:-1}}); }
-
-du() { command du -hs -- "${@:-*}" | sort -h; }
 
 # Initialize
 eval "$(oh-my-posh init zsh -c $HOME/.config/ohmyposh/lambda.omp.json)"
