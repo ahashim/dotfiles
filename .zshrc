@@ -1,5 +1,6 @@
 # Environment
 typeset -U PATH
+export AWS_PROFILE="Engineers"
 export BUN_INSTALL="$HOME/.bun"
 export EDITOR=nvim
 export VISUAL=nvim
@@ -49,12 +50,6 @@ alias vi="$EDITOR"
 alias vim="$EDITOR"
 
 # Functions
-aws-use() {
-  [[ -z "$1" ]] && echo "Usage: aws-use <profile>" && return 1
-  export AWS_PROFILE="$1"
-  aws sts get-caller-identity --query Arn --output text
-}
-
 u() { cd $(printf '../%.0s' {1..${1:-1}}); }
 
 # Initialize
