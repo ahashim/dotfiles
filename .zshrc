@@ -13,6 +13,7 @@ export NODE_OPTIONS="--max-old-space-size=16384"
 export NVM_DIR="$HOME/.nvm"
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH=$HOME/.opencode/bin:$BUN_INSTALL/bin:$PNPM_HOME:$GOPATH/bin:$HOME/.local/bin:$PATH
+[[ -d ~/.local/share/zsh/plugins ]] && ZSH_PLUGINS=~/.local/share/zsh/plugins || ZSH_PLUGINS=/usr/share/zsh/plugins
 
 # Options
 setopt COMPLETE_IN_WORD
@@ -30,11 +31,11 @@ bindkey -v
 KEYTIMEOUT=1
 
 # Plugins
-source /usr/share/zsh/plugins/zsh-defer/zsh-defer.plugin.zsh
+source $ZSH_PLUGINS/zsh-defer/zsh-defer.plugin.zsh
 zsh-defer -c 'autoload -Uz compinit && compinit'
 source <(fzf --zsh)
-zsh-defer source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-zsh-defer source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+zsh-defer source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
+zsh-defer source $ZSH_PLUGINS/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 # Aliases
 alias c='clear'
