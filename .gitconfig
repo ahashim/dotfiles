@@ -18,6 +18,7 @@
     bc = rev-parse --abbrev-ref HEAD
     bu = !git rev-parse --abbrev-ref --symbolic-full-name "@{u}"
     bs = !git-branch-status
+    db = !git symbolic-ref refs/remotes/origin/HEAD --short | sed 's@origin/@@'
     #############
     c = commit
     ca = commit -a
@@ -196,7 +197,7 @@
     theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
     subrepo = !sh -c 'git filter-branch --prune-empty --subdirectory-filter $1 main' -
     human = name-rev --name-only --refs=refs/heads/*
-    sync = !git fetch --prune && git pull && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D
+    sync = !git checkout $(git db) && git pull && git fetch --prune && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D
     webui = !/home/ahmed/.git-webui/release/libexec/git-core/git-webui
 
 [branch]
