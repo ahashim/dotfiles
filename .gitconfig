@@ -31,7 +31,7 @@
     #############
     cl = clone
     cld = clone --depth 1
-    clg = !sh -c 'git clone git://github.com/$1 $(basename $1)' -
+    clg = !sh -c 'git clone https://github.com/$1 $(basename $1)' -
     clgp = !sh -c 'git clone git@github.com:$1 $(basename $1)' -
     clgu = !sh -c 'git clone git@github.com:$(git config --get user.username)/$1 $1' -
     #############
@@ -70,9 +70,9 @@
     #############
     o = checkout
     ob = checkout -b
-    om = checkout main
+    om = !git checkout $(git db)
     ot = !sh -c 'git checkout --track origin/$1' -
-    opr = !sh -c 'git fo pull/$1/head:pr-$1 && git o pr-$1'
+    opr = !sh -c 'git fo pull/$1/head:pr-$1 && git o pr-$1' -
     #############
     pr = prune -v
     #############
@@ -86,10 +86,10 @@
     psfo = push -f origin
     psuo = push -u origin
     #############
-    psom = push origin main
-    psaom = push --all origin main
-    psfom = push -f origin main
-    psuom = push -u origin main
+    psom = !git push origin $(git db)
+    psaom = !git push --all origin $(git db)
+    psfom = !git push -f origin $(git db)
+    psuom = !git push -u origin $(git db)
     psoc = !git push origin $(git bc)
     psaoc = !git push --all origin $(git bc)
     psfoc = !git push -f origin $(git bc)
@@ -97,21 +97,15 @@
     psdc = !git push origin :$(git bc)
     #############
     pl = pull
-    rpl = pull --rebase
     #############
     plo = pull origin
     plu = pull upstream
-    pbo = pull --rebase origin
     #############
-    plom = pull origin main
-    plum = pull upstream main
-    pbom = pull --rebase origin main
-    pbum = pull --rebase upstream main
+    plom = !git pull origin $(git db)
+    plum = !git pull upstream $(git db)
     #############
     ploc = !git pull origin $(git bc)
     pluc = !git pull upstream $(git bc)
-    pboc = !git pull --rebase origin $(git bc)
-    pbuc = !git pull --rebase upstream $(git bc)
     #############
     rb = rebase
     rba = rebase --abort
@@ -127,7 +121,7 @@
     rehh = reset --hard HEAD
     remh = reset --mixed HEAD
     resh = reset --soft HEAD
-    rehom = reset --hard origin/main
+    rehom = !git reset --hard origin/$(git db)
     #############
     r = remote
     ra = remote add
@@ -157,8 +151,8 @@
     sd = stash drop
     sl = stash list
     sp = stash pop
-    ss = stash save
-    ssk = stash save -k
+    ss = stash push
+    ssk = stash push -k
     sw = stash show
     st = !git stash list | wc -l 2>/dev/null | grep -oEi '[0-9][0-9]*'
     #############
@@ -169,23 +163,23 @@
     wp = show -p
     wr = show -p --no-color
     #############
-    subadd = !sh -c 'git submodule add git://github.com/$1 $2/$(basename $1)' -
+    subadd = !sh -c 'git submodule add https://github.com/$1 $2/$(basename $1)' -
     subrm = !sh -c 'git submodule deinit -f -- $1 && rm -rf .git/modules/$1 && git rm -f $1' -
     subup = submodule update --init --recursive
-    subpull = !git submodule foreach git pull --tags origin main
+    subpull = !git submodule foreach git pull --tags origin $(git db)
     #############
     assume = update-index --assume-unchanged
     unassume = update-index --no-assume-unchanged
-    assumed = !git ls -v | grep ^h | cut -c 3-
+    assumed = !git ls-files -v | grep ^h | cut -c 3-
     unassumeall = !git assumed | xargs git unassume
     assumeall = !git status -s | awk {'print $2'} | xargs git assume
     #############
     bump = !sh -c 'git commit -am \"Version bump v$1\" && git psuoc && git release $1' -
     release = !sh -c 'git tag v$1 && git pst' -
     unrelease = !sh -c 'git tag -d v$1 && git pso :v$1' -
-    merged = !sh -c 'git o main && git plom && git bd $1 && git rpo' -
+    merged = !sh -c 'git o $(git db) && git plom && git bd $1 && git rpo' -
     aliases = !git config -l | grep alias | cut -c 7-
-    snap = !git stash save 'snapshot: $(date)' && git stash apply 'stash@{0}'
+    snap = !git stash push -m 'snapshot: $(date)' && git stash apply 'stash@{0}'
     bare = !sh -c 'git symbolic-ref HEAD refs/heads/$1 && git rm --cached -r . && git clean -xfd' -
     whois = !sh -c 'git log -i -1 --author=\"$1\" --pretty=\"format:%an <%ae>\"' -
     serve = daemon --reuseaddr --verbose --base-path=. --export-all ./.git
@@ -195,9 +189,9 @@
     #############
     ours = "!f() { git checkout --ours $@ && git add $@; }; f"
     theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
-    subrepo = !sh -c 'git filter-branch --prune-empty --subdirectory-filter $1 main' -
+    subrepo = !sh -c 'git filter-repo --subdirectory-filter $1 -- $(git db)' -
     human = name-rev --name-only --refs=refs/heads/*
-    sync = !git checkout $(git db) && git pull && git fetch --prune && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D
+    sync = !git checkout $(git db) && git pull && git fetch && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D
     webui = !/home/ahmed/.git-webui/release/libexec/git-core/git-webui
 
 [branch]
@@ -224,7 +218,7 @@
     untracked = red bold
 
 [commit]
-	gpgsign = true
+    gpgsign = true
 
 [core]
     editor = nvim
