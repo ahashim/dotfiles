@@ -3,7 +3,7 @@ typeset -U PATH
 export AWS_PROFILE="Engineers"
 export BUN_INSTALL="$HOME/.bun"
 export EDITOR=nvim
-export VISUAL=nvim
+export VISUAL="$EDITOR"
 export FZF_PREVIEW_ADVANCED=1
 export FZF_DEFAULT_OPTS="--preview-window='right:33%:nohidden' --preview $HOME/.config/fzf/preview.sh\ {}"
 export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
