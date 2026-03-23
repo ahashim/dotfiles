@@ -192,7 +192,6 @@
     subrepo = !sh -c 'git filter-repo --subdirectory-filter $1 -- $(git db)' -
     human = name-rev --name-only --refs=refs/heads/*
     sync = !git checkout $(git db) && git pull && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D
-    webui = !/home/ahmed/.git-webui/release/libexec/git-core/git-webui
 
 [branch]
     autosetuprebase = always
@@ -302,5 +301,3 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
-[webui]
-    autoupdate = true
