@@ -59,6 +59,7 @@
     #############
     l = log --oneline
     lg = log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all
+    dl = log -p --ext-diff
     #############
     ls = ls-files
     lsf = !git ls-files | grep -i
@@ -159,8 +160,8 @@
     t = tag
     td = tag -d
     #############
-    w = show
-    wp = show -p
+    w = show --ext-diff
+    wp = show -p --ext-diff
     wr = show -p --no-color
     #############
     subadd = !sh -c 'git submodule add https://github.com/$1 $2/$(basename $1)' -
@@ -222,38 +223,23 @@
 [core]
     editor = nvim
     excludesfile = ~/.gitignore
-    pager = delta
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 [credential]
     helper = store
 
 [diff]
-    colorMoved = default
-    tool = vimdiff
+    tool = difftastic
+    external = difft
 
 [difftool]
     prompt = false
 
-[delta]
-    features = line-numbers decorations
-    line-numbers = true
-    navigate = true
+[difftool "difftastic"]
+    cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
 
-[delta "decorations"]
-    minus-style = red bold normal
-    plus-style = green bold normal
-    minus-emph-style = white bold red
-    minus-non-emph-style = red bold normal
-    plus-emph-style = white bold green
-    plus-non-emph-style = green bold normal
-    file-style = yellow bold none
-    file-decoration-style = yellow box
-    hunk-header-style = magenta bold
-    hunk-header-decoration-style = magenta box
-    minus-empty-line-marker-style = normal normal
-    plus-empty-line-marker-style = normal normal
-    line-numbers-right-format = "{np:^4}│ "
+[pager]
+    difftool = true
 
 [fetch]
     prune = true
@@ -263,9 +249,6 @@
 
 [init]
     defaultBranch = main
-
-[interactive]
-    diffFilter = delta --color-only
 
 [merge]
     conflictstyle = diff3
