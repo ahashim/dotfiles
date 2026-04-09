@@ -1,6 +1,5 @@
 # Environment
 typeset -U PATH
-export AWS_PROFILE="Engineers"
 export BUN_INSTALL="$HOME/.bun"
 export EDITOR=nvim
 export VISUAL="$EDITOR"
@@ -12,7 +11,8 @@ export GOPATH="$HOME/go"
 export NODE_OPTIONS="--max-old-space-size=16384"
 export NVM_DIR="$HOME/.nvm"
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH=$HOME/.opencode/bin:$BUN_INSTALL/bin:$PNPM_HOME:$GOPATH/bin:$HOME/.local/bin:$PATH
+export X_DIR="$HOME/.x"
+export PATH=$X_DIR/bin:$HOME/.opencode/bin:$BUN_INSTALL/bin:$PNPM_HOME:$GOPATH/bin:$HOME/.local/bin:$PATH
 [[ -d ~/.local/share/zsh/plugins ]] && ZSH_PLUGINS=~/.local/share/zsh/plugins || ZSH_PLUGINS=/usr/share/zsh/plugins
 
 # Options
@@ -32,10 +32,10 @@ KEYTIMEOUT=1
 
 # Plugins
 source $ZSH_PLUGINS/zsh-defer/zsh-defer.plugin.zsh
-zsh-defer -c 'autoload -Uz compinit && compinit'
 source <(fzf --zsh)
 zsh-defer source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
 zsh-defer source $ZSH_PLUGINS/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+fpath=(/home/ahmed/.x/completions $fpath)
 
 # Aliases
 alias c='clear'
@@ -59,4 +59,7 @@ zsh-defer eval "$(zoxide init zsh)"
 zsh-defer source "$NVM_DIR/nvm.sh"
 zsh-defer source "$NVM_DIR/bash_completion"
 zsh-defer source "$BUN_INSTALL/_bun"
+zsh-defer source "$X_DIR/completions/x.zsh"
+zsh-defer source "$X_DIR/env.sh"
+zsh-defer -c 'autoload -Uz compinit && compinit'
 ff
