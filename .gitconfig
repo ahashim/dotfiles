@@ -112,6 +112,7 @@
     rba = rebase --abort
     rbc = rebase --continue
     rbi = rebase --interactive
+    rbm = !git fo && git rb origin/$(git db)
     rbs = rebase --skip
     #############
     re = reset
