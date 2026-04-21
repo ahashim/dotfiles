@@ -35,7 +35,7 @@ source $ZSH_PLUGINS/zsh-defer/zsh-defer.plugin.zsh
 source <(fzf --zsh)
 zsh-defer source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
 zsh-defer source $ZSH_PLUGINS/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-fpath=(/home/ahmed/.x/completions $fpath)
+[[ -d $HOME/.x/completions ]] && fpath=($HOME/.x/completions $fpath)
 
 # Aliases
 alias c='clear'
