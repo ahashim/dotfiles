@@ -249,7 +249,7 @@
     user = ahashim
 
 [init]
-    defaultBranch = main
+	defaultBranch = main
 
 [merge]
     conflictstyle = diff3
@@ -263,6 +263,7 @@
 
 [push]
     default = simple
+	autoSetupRemote = true
 
 [rerere]
     enabled = 1
