@@ -51,13 +51,20 @@ alias vi="$EDITOR"
 alias vim="$EDITOR"
 
 # Functions
+_load_nvm() {
+  unfunction nvm node npm npx 2>/dev/null
+  source "$NVM_DIR/nvm.sh"
+  [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+}
+nvm() { _load_nvm; nvm "$@"; }
+node() { _load_nvm; node "$@"; }
+npm() { _load_nvm; npm "$@"; }
+npx() { _load_nvm; npx "$@"; }
 u() { cd $(printf '../%.0s' {1..${1:-1}}); }
 
 # Initialize
 eval "$(oh-my-posh init zsh -c $HOME/.config/ohmyposh/lambda.omp.json)"
 zsh-defer eval "$(zoxide init zsh)"
-zsh-defer source "$NVM_DIR/nvm.sh"
-zsh-defer source "$NVM_DIR/bash_completion"
 zsh-defer source "$BUN_INSTALL/_bun"
 zsh-defer source "$X_DIR/completions/x.zsh"
 zsh-defer source "$X_DIR/env.sh"
