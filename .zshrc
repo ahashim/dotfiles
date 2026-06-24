@@ -12,7 +12,7 @@ export NODE_OPTIONS="--max-old-space-size=16384"
 export NVM_DIR="$HOME/.nvm"
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export X_DIR="$HOME/.x"
-export PATH=$X_DIR/bin:$HOME/.opencode/bin:$BUN_INSTALL/bin:$PNPM_HOME:$GOPATH/bin:$HOME/.local/bin:$PATH
+export PATH=$X_DIR/bin:$BUN_INSTALL/bin:$PNPM_HOME:$GOPATH/bin:$HOME/.local/bin:$PATH
 [[ -d ~/.local/share/zsh/plugins ]] && ZSH_PLUGINS=~/.local/share/zsh/plugins || ZSH_PLUGINS=/usr/share/zsh/plugins
 
 # Options
