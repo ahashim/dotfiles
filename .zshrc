@@ -12,7 +12,7 @@ export NODE_OPTIONS="--max-old-space-size=16384"
 export NVM_DIR="$HOME/.nvm"
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export X_DIR="$HOME/.x"
-export PATH=$X_DIR/bin:$BUN_INSTALL/bin:$PNPM_HOME:$GOPATH/bin:$HOME/.local/bin:$PATH
+export PATH=$NVM_DIR/versions/node/v$(<"$NVM_DIR/alias/default")/bin:$X_DIR/bin:$BUN_INSTALL/bin:$PNPM_HOME:$GOPATH/bin:$HOME/.local/bin:$PATH
 [[ -d ~/.local/share/zsh/plugins ]] && ZSH_PLUGINS=~/.local/share/zsh/plugins || ZSH_PLUGINS=/usr/share/zsh/plugins
 
 # Options
@@ -51,15 +51,12 @@ alias vi="$EDITOR"
 alias vim="$EDITOR"
 
 # Functions
-_load_nvm() {
-  unfunction nvm node npm npx 2>/dev/null
+nvm() {
+  unfunction nvm
   source "$NVM_DIR/nvm.sh"
   [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+  nvm "$@"
 }
-nvm() { _load_nvm; nvm "$@"; }
-node() { _load_nvm; node "$@"; }
-npm() { _load_nvm; npm "$@"; }
-npx() { _load_nvm; npx "$@"; }
 u() { cd $(printf '../%.0s' {1..${1:-1}}); }
 
 # Initialize
