@@ -31,7 +31,13 @@ bindkey -v
 KEYTIMEOUT=1
 
 # Plugins
-source $ZSH_PLUGINS/zsh-defer/zsh-defer.plugin.zsh
+# zsh-defer must load synchronously before the deferred sources below.
+# Prefer $ZSH_PLUGINS (system/AUR), fall back to the vendored clone.
+if [[ -r $ZSH_PLUGINS/zsh-defer/zsh-defer.plugin.zsh ]]; then
+  source $ZSH_PLUGINS/zsh-defer/zsh-defer.plugin.zsh
+elif [[ -r $HOME/.local/share/zsh/zsh-defer/zsh-defer.plugin.zsh ]]; then
+  source $HOME/.local/share/zsh/zsh-defer/zsh-defer.plugin.zsh
+fi
 source <(fzf --zsh)
 zsh-defer source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
 zsh-defer source $ZSH_PLUGINS/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
