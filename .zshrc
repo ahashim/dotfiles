@@ -3,9 +3,6 @@ typeset -U PATH
 export BUN_INSTALL="$HOME/.bun"
 export EDITOR=nvim
 export VISUAL="$EDITOR"
-export FZF_PREVIEW_ADVANCED=1
-export FZF_DEFAULT_OPTS="--preview-window='right:33%:nohidden' --preview $HOME/.config/fzf/preview.sh\ {}"
-export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
 export GPG_TTY=$(tty)
 export GOPATH="$HOME/go"
 export NODE_OPTIONS="--max-old-space-size=16384"
