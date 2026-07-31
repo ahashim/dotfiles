@@ -7,6 +7,8 @@
 -- When Noctalia's Hyprland template starts emitting a .lua file natively
 -- (v5+), replace this whole file with a dofile() of the generated file.
 
+-- NOTE: snapshot of the palette at migration time, stale by design — it only
+-- prevents unthemed borders when the generated file is missing/unreadable.
 local FALLBACK = {
   primary   = "rgb(ffb94f)",
   surface   = "rgb(17130e)",

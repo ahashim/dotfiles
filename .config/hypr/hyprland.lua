@@ -12,7 +12,9 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 
 hl.monitor({
-    output = "DP-3",
+    -- desc: selector survives connector renames (this panel was DP-3 once,
+    -- is DP-1 now — the old rule silently stopped matching, leaving 60 Hz)
+    output = "desc:ASUSTek COMPUTER INC ASUS VG34V LCLMTF055624",
     mode = "3440x1440@165",
     position = "0x0",
     scale = "1",
