@@ -6,3 +6,6 @@
 .claude
 
 **/.claude/settings.local.json
+
+# Noctalia v4 recreates a stub hyprland.conf on theme apply; config is hyprland.lua
+.config/hypr/hyprland.conf
