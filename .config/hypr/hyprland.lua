@@ -415,6 +415,8 @@ hl.config({
     },
     input = {
         kb_layout = "us",
+        repeat_delay = 250, -- ms before held keys start repeating (default 600)
+        repeat_rate = 50, -- repeats per second once started (default 25)
         follow_mouse = 1,
         sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
         touchpad = {
