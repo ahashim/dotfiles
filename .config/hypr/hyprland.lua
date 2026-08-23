@@ -210,16 +210,16 @@ hl.device({
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
--- Noctalia (v4 IPC)
-local ipc = "qs -c noctalia-shell ipc call"
+-- Noctalia (v5 IPC)
+local noctalia = "noctalia msg"
 
 -- Core binds
 hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
-hl.bind(mainMod .. " + space", hl.dsp.exec_cmd(ipc .. " launcher toggle"))
-hl.bind(mainMod .. " + comma", hl.dsp.exec_cmd(ipc .. " settings toggle"))
-hl.bind(mainMod .. " + tab", hl.dsp.exec_cmd(ipc .. " launcher windows"))
-hl.bind(mainMod .. " + CONTROL + L", hl.dsp.exec_cmd(ipc .. " lockScreen lock"))
+hl.bind(mainMod .. " + space", hl.dsp.exec_cmd(noctalia .. " panel-toggle launcher"))
+hl.bind(mainMod .. " + comma", hl.dsp.exec_cmd(noctalia .. " settings-toggle"))
+hl.bind(mainMod .. " + tab", hl.dsp.exec_cmd(noctalia .. " window-switcher"))
+hl.bind(mainMod .. " + CONTROL + L", hl.dsp.exec_cmd(noctalia .. " session lock"))
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
@@ -279,11 +279,11 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Media keys
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(ipc .. " volume increase"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(ipc .. " volume decrease"), { locked = true, repeating = true })
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd(ipc .. " volume muteOutput"), { locked = true })
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(ipc .. " brightness increase"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(ipc .. " brightness decrease"), { locked = true, repeating = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(noctalia .. " volume-up"), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(noctalia .. " volume-down"), { locked = true, repeating = true })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd(noctalia .. " volume-mute"), { locked = true })
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(noctalia .. " brightness-up"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(noctalia .. " brightness-down"), { locked = true, repeating = true })
 
 -- Requires playerctl
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
@@ -345,12 +345,24 @@ hl.window_rule({
     center = true,
 })
 
--- Noctalia background layer (namespace is "noctalia-background-<output>")
+-- Noctalia settings window
+hl.window_rule({
+    name = "noctalia-settings",
+    match = {
+        class = "dev.noctalia.Noctalia",
+    },
+    float = true,
+    size = { 1080, 920 },
+})
+
+-- Noctalia v5 surfaces: blur bar/panels/dock/notifications and disable
+-- Hyprland's layer animations so they don't fight Noctalia's own.
 hl.layer_rule({
     name = "noctalia",
     match = {
-        namespace = "noctalia-background-.*$",
+        namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$",
     },
+    no_anim = true,
     ignore_alpha = 0.5,
     blur = true,
     blur_popups = true,
@@ -457,9 +469,13 @@ end)
 --## NOCTALIA COLORS ###
 --######################
 
--- Fail-soft palette bridge (see noctalia_colors.lua). Must stay LAST so the
--- Noctalia palette overrides the static border colors above, matching the
--- old `source = noctalia/noctalia-colors.conf` that sat at the end of
--- hyprland.conf.
-local cfgdir = os.getenv("XDG_CONFIG_HOME") or (os.getenv("HOME") .. "/.config")
-pcall(dofile, cfgdir .. "/hypr/noctalia_colors.lua")
+-- Noctalia v5 color template: enabling the Hyprland template in Noctalia
+-- settings renders ~/.config/hypr/noctalia.lua (see
+-- /usr/share/noctalia/assets/templates/hyprland/). Must stay LAST so the
+-- palette overrides the static border colors above. Fail-soft: until the v5
+-- template is first applied, fall back to the legacy v4 bridge
+-- (noctalia_colors.lua) so borders keep the old palette.
+if not ok then
+    local cfgdir = os.getenv("XDG_CONFIG_HOME") or (os.getenv("HOME") .. "/.config")
+    pcall(dofile, cfgdir .. "/hypr/noctalia_colors.lua")
+end
