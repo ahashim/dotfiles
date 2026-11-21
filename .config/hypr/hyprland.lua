@@ -43,7 +43,7 @@ hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("GBM_BACKEND", "nvidia-drm")
 hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 hl.env("LIBVA_DRIVER_NAME", "nvidia")
-hl.env("WLR_NO_HARDWARE_CURSORS", "1")
+hl.env("NVD_BACKEND", "direct")
 
 -- Qt
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
