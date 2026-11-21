@@ -44,6 +44,8 @@ hl.env("GBM_BACKEND", "nvidia-drm")
 hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 hl.env("LIBVA_DRIVER_NAME", "nvidia")
 hl.env("NVD_BACKEND", "direct")
+-- Firefox: nvidia-vaapi-driver can't reach the GPU from inside the RDD sandbox
+hl.env("MOZ_DISABLE_RDD_SANDBOX", "1")
 
 -- Qt
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
